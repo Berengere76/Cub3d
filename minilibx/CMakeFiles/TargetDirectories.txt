@@ -1,0 +1,7 @@
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/mlx42.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/edit_cache.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/rebuild_cache.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/list_install_components.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/install.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/install/local.dir
+/home/blebas/Documents/Cub3d/minilibx/CMakeFiles/install/strip.dir
