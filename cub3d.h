@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/04 11:31:47 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/04 14:28:28 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@
 # define PURPLE	"\e[1;35m"
 # define CYAN	"\e[1;36m"
 # define BLUE	"\e[1;34m"
+
+/* ***************** */
+/*                   */
+/* ***************** */
+
+# define WIN_W 640
+# define WIN_H 512
+# define BLOCK_RES 64
 
 /* ***************** */
 /*     STRUCTURES    */
