@@ -1,10 +1,8 @@
 NAME := cub3d
 
 CC := cc
-RM := rm -f
-
-CLINKS		= -ldl -lglfw -pthread -lm
 CFLAGS		= -g -Wall -Wextra -Werror
+CLINKS		= -ldl -lglfw -pthread -lm
 MLX			= minilibx
 LIBMLX 		= $(MLX)/libmlx42.a
 
