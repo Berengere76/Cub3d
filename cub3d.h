@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/05 16:22:25 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:11:28 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ typedef struct texture
 	mlx_texture_t	*background_texture;
 }		t_texture;
 
+typedef struct colour
+{
+	int	R;
+	int	G;
+	int	B;
+}		t_colour;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -70,6 +77,8 @@ typedef struct s_data
 	double		planeY;
 	t_image		image;
 	t_texture	texture;
+	t_colour	floor;
+	t_colour	ceiling;
 }	t_data;
 
 typedef struct s_gridpos

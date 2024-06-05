@@ -6,13 +6,13 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:05:02 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/05 16:39:26 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:48:54 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//TODO Check isspace
+//TODO Check isspace - does not count \n as ok of course
 int	is_spc(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == 'f');
