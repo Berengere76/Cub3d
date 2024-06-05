@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/05 12:09:56 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:57:21 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "minilibx/mlx42.h"
 # include "Libft/libft.h"
 # include <unistd.h>
+# include <stdio.h> //TODO REMOVE (printf)
 
 /* ***************** */
 /*       COLORS      */
@@ -35,7 +36,7 @@
 # define BLUE	"\e[1;34m"
 
 /* ***************** */
-/*                   */
+/*        Kiri       */
 /* ***************** */
 
 # define WIN_W 640
@@ -70,6 +71,12 @@ typedef struct s_data
 	t_image		image;
 	t_texture	texture;
 }	t_data;
+
+typedef struct s_gridpos
+{
+	double		x;
+	double		y;
+}	t_gridpos;
 
 /* TEXTURE.C */
 void	ft_loadpng(t_data *data);
