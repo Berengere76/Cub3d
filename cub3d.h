@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/05 14:57:21 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:22:25 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,16 @@ void	ft_texture_image(t_data *data);
 void	ft_resize(t_data *data);
 void	ft_image(t_data *data);
 
+/* CHECK_MAP.C */
+int		map_error(char *message);
+int		is_direc(char c);
+int		is_valid(char c);
+int		check_0(char **map, int row, int col);
+int		map_open(char **map);
+
 /* PARSE_MAP.C */
 int		parse_map(t_data *data, char **map);
+
 /* MAIN.C */
 void	error(void);
 
