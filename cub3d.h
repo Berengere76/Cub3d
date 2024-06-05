@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/04 14:28:28 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:09:56 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "minilibx/mlx42.h"
 # include "Libft/libft.h"
+# include <unistd.h>
 
 /* ***************** */
 /*       COLORS      */
@@ -60,6 +61,12 @@ typedef struct s_data
 	void		*mlx;
 	int			width;
 	int			height;
+	double		posX; //start position of the player
+	double		posY;
+	double		dirX; //start direction of player's POV
+	double		dirY;
+	double		planeX; //camera plane
+	double		planeY;
 	t_image		image;
 	t_texture	texture;
 }	t_data;
@@ -70,6 +77,8 @@ void	ft_texture_image(t_data *data);
 void	ft_resize(t_data *data);
 void	ft_image(t_data *data);
 
+/* PARSE_MAP.C */
+int		parse_map(t_data *data, char **map);
 /* MAIN.C */
 void	error(void);
 

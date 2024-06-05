@@ -9,7 +9,7 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE := main.c texture.c
+SOURCE := main.c texture.c parse_map.c
 OBJ 	= $(SOURCE:.c=.o)
 
 all: $(NAME)
