@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 14:52:32 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:50:43 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,13 @@ int	main(int argc, char **argv)
 	printf("WE_path: %s\n", data.walltexture.WE_path);
 	printf("EA_path: %s\n", data.walltexture.EA_path);
 
+
 	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	// ft_image(&data);
 	// if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)
 	// 	error();
 	// mlx_loop(data.mlx);
 	// mlx_terminate(data.mlx);
+	ft_free(&data);
 	return (0);
 }

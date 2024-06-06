@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 14:40:04 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:11:04 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_table(char **tab)
 	}
 }
 
-void ft_free(t_data *data)
+void	ft_free(t_data *data)
 {
 	if (data->walltexture.NO_path)
 		free(data->walltexture.NO_path);

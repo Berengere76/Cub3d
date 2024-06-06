@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 14:42:06 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:46:57 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		check_0(char **map, int row, int col);
 int		map_open(char **map, t_data *data);
 
 /* ERROR.C */
+void	ft_free(t_data *data);
 int		ft_errorfree(char *type, char *message, t_data *data);
 // int		ft_error(char *type, char *message);
 
@@ -119,5 +120,9 @@ int		parse_map(t_data *data, char **map);
 
 /* MAIN.C */
 void	error(void);
+
+
+/* GNL.C */
+char	*gnl(int fd);
 
 #endif

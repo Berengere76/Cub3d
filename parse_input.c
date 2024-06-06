@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 15:07:59 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:05:25 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,35 @@ int	is_id(char c)
 				|| c == 'A');
 }
 
+int	save_texture(char *path, char **target)
+{
+	if (*target)
+		return (1);
+	*target = path;
+	return (0);
+}
+
+int	save_textures(char *path, t_data *data, char c)
+{
+	if (c == 'N')
+		if (save_texture(path, &data->walltexture.NO_path))
+			return(ft_errorfree("Input", "duplicate NO wall texture\n", data));
+	if (c == 'S')
+		if (save_texture(path, &data->walltexture.SO_path))
+			return(ft_errorfree("Input", "duplicate SO wall texture\n", data));
+	if (c == 'W')
+		if (save_texture(path, &data->walltexture.WE_path))
+			return(ft_errorfree("Input", "duplicate WE wall texture\n", data));
+	if (c == 'E')
+		if (save_texture(path, &data->walltexture.EA_path))
+			return(ft_errorfree("Input", "duplicate EA wall texture\n", data));
+	return (0);
+}
+
 int	get_textures(char *line, t_data *data)
 {
 	char *temp;
-	char *target;
+	char *path;
 	char c;
 
 	temp = line;
@@ -54,21 +79,46 @@ int	get_textures(char *line, t_data *data)
 		temp++;
 	while (is_spc(*temp))
 		temp++;
-	target = ft_strdup(temp);
-	if (!target)
+	path = ft_strdup(temp);
+	if (!path)
 		return (1);
-	temp = target;
+	temp = path;
 	while (*temp && !is_spc(*temp))
 		temp++;
 	*temp = '\0';
-	if (c == 'N')
-		data->walltexture.NO_path = target;
-	else if (c == 'S')
-		data->walltexture.SO_path = target;
-	else if (c == 'W')
-		data->walltexture.WE_path = target;
-	else if (c == 'E')
-		data->walltexture.EA_path = target;
+	if (save_textures(path, data, c))
+	{
+		free(path);
+		return (1);
+	}
+	return (0);
+}
+
+int	get_colours(char *line, t_data *data)
+{
+	char *temp;
+	char *colours;
+	char c;
+
+	temp = line;
+	while (is_spc(*temp))
+		temp++;
+	c = *temp;
+	while (is_id(*temp))
+		temp++;
+	while (is_spc(*temp))
+		temp++;
+	colours = ft_strdup(temp);
+	if (!colours)
+		return (1);
+	temp = colours;
+	while (*temp && !is_spc(*temp))
+		temp++;
+	*temp = '\0';
+	if (c == 'F')
+		data->walltexture.NO_path = colours;
+	else if (c == 'C')
+		data->walltexture.SO_path = colours;
 	return (0);
 }
 
@@ -101,11 +151,11 @@ int	extract_data(char *line, t_data *data)
 		if (get_textures(line, data))
 			return (1);
 	}
-	// else if (!strncmp(temp, "F", 1) || !strncmp(temp, "C", 1))
-	// {
-	// 	if (get_colours(temp, data))
-	// 		return (1);
-	// }
+	else if (!strncmp(temp, "F", 1) || !strncmp(temp, "C", 1))
+	{
+		if (get_colours(line, data))
+			return (1);
+	}
 	// //handle invalid input
 	// else //TODO make sure the map is read only if others are ok
 	// {
@@ -122,13 +172,18 @@ int	read_cub(int fd, t_data *data)
 
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = gnl(fd);
 		if (!line)
 			break;
 		line[ft_strlen(line) - 1] = '\0';
 		if (!empty_line(line))
+		{
 			if (extract_data(line, data))
+			{
+				free(line);
 				return (1);
+			}
+		}
 		free(line);
 	}
 	return (0);
@@ -144,6 +199,5 @@ int	open_cub(char *argv, t_data *data)
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		return (ft_errorfree("Input", "failed to open input file", data));
-	read_cub(fd, data);
-	return (0);
+	return (read_cub(fd, data));
 }

@@ -14,7 +14,8 @@ SOURCE :=	main.c			\
 			parse_map.c		\
 			check_map.c		\
 			parse_input.c	\
-			error.c
+			error.c			\
+			gnl.c
 
 OBJ 	= $(SOURCE:.c=.o)
 
