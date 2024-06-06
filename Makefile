@@ -15,7 +15,10 @@ SOURCE :=	main.c			\
 			check_map.c		\
 			parse_input.c	\
 			error.c			\
-			gnl.c
+			gnl.c			\
+			get_colours.c	\
+			get_textures.c	\
+			get_map.c
 
 OBJ 	= $(SOURCE:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 16:46:57 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:30:07 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,14 @@ void	error(void);
 
 /* GNL.C */
 char	*gnl(int fd);
+
+/* GET_COLOURS.C */
+int	get_colours(char *line, t_data *data);
+
+/* GET_TEXTURES.C */
+int	get_textures(char *line, t_data *data);
+
+/* GET_MAP.C */
+int	get_map(char *line, t_data *data);
 
 #endif

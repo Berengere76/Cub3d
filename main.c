@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 15:50:43 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:27:55 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ int	main(int argc, char **argv)
 	data.walltexture.EA_path = NULL;
 	data.map = NULL;
 
+	data.ceiling = -1;
+	data.floor = -1;
+
 	
 	//colour screen background here https://github.com/keuhdall/images_example
 	if (argc != 2)
@@ -99,6 +102,8 @@ int	main(int argc, char **argv)
 	printf("SO_path: %s\n", data.walltexture.SO_path);
 	printf("WE_path: %s\n", data.walltexture.WE_path);
 	printf("EA_path: %s\n", data.walltexture.EA_path);
+	printf("F colour (14827520): %d\n", data.floor);
+	printf("C colour (14868480): %d\n", data.ceiling);
 
 
 	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
