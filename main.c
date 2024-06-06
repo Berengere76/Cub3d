@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 10:49:42 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:13:15 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minilibx/mlx42.h"
-
-void	error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
 
 int	data_init(t_data *data, char **map)
 {
@@ -48,65 +42,57 @@ int	data_init(t_data *data, char **map)
 // 	return new;
 // }
 
-int	ft_background(t_data *data)
+int	main(void)
 {
-
-
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	int	bpp;
-	int	size_line;
-	int	endian;
+	// int	bpp;
+	// int	size_line;
+	// int	endian;
 	
+	// (void)argc;
 	t_data	data;
-	static char *map[] = 
+	// static char *map[] = 
+	// // {
+	// // 	"11111",
+	// // 	"10001",
+	// // 	"10N01",
+	// // 	"11111",
+	// // };
 	// {
-	// 	"11111",
-	// 	"10001",
-	// 	"10N01",
-	// 	"11111",
-	// };
-	{
-		"   11111111111111111",
-		"   10000000000000001",
-		"11110111111111111111",
-		"11110111111111111111",
-		"10000000000000000001",
-		"10000000000011000001",
-		"10000000000000000001",
-		"1000000N000000000001",
-		"11111111110011111111",
-		"11100000000000001   ",
-		"10000000000000011   ",
-		"11011110000111001   ",
-		"1111  111111 1111111"
-	}; //position 0,0 on top left
+	// 	"   11111111111111111",
+	// 	"   10000000000000001",
+	// 	"11110111111111111111",
+	// 	"11110111111111111111",
+	// 	"10000000000000000001",
+	// 	"10000000000011000001",
+	// 	"10000000000000000001",
+	// 	"1000000N000000000001",
+	// 	"11111111110011111111",
+	// 	"11100000000000001   ",
+	// 	"10000000000000011   ",
+	// 	"11011110000111001   ",
+	// 	"1111  111111 1111111"
+	// }; //position 0,0 on top left
 
 	//TODO parse inputs (must be between 0 and 255)
-	data.ceiling.R = 0;
-	data.ceiling.G = 0;
-	data.ceiling.B = 0;
-	data.floor.R = 255;
-	data.floor.G = 255;
-	data.floor.B = 255;
+	// data.ceiling.R = 0;
+	// data.ceiling.G = 0;
+	// data.ceiling.B = 0;
+	// data.floor.R = 255;
+	// data.floor.G = 255;
+	// data.floor.B = 255;
 
 	//colour screen background here https://github.com/keuhdall/images_example
-	if (argc != 2)
-		return (ft_error("Input", "wrong number of input arguments"));
-	if (open_cub(argv[1]))
-		return (1);
+	// if (argc != 2)
+	// 	return (ft_error("Input", "wrong number of input arguments"));
+	// if (open_cub(argv[1]))
+	// 	return (1);
 
-	if (map_open(map))
-		return (1);
-	if (data_init(&data, map))
-		return (1);
+	// if (map_open(map))
+	// 	return (1);
+	// if (data_init(&data, map))
+	// 	return (1);
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	ft_image(&data);
-	if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)
-		error();
+	ft_put_pixel_to_background(&data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 10:27:42 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:05:14 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@
 # include <stdio.h> //TODO REMOVE (printf)
 
 /* ***************** */
-/*       COLORS      */
-/* ***************** */
-
-# define NC		"\e[0m"
-# define YELLOW	"\e[1;33m"
-# define RED	"\e[1;31m"
-# define GREEN	"\e[1;32m"
-# define PURPLE	"\e[1;35m"
-# define CYAN	"\e[1;36m"
-# define BLUE	"\e[1;34m"
-
-/* ***************** */
 /*        Kiri       */
 /* ***************** */
 
@@ -46,16 +34,6 @@
 /* ***************** */
 /*     STRUCTURES    */
 /* ***************** */
-
-typedef struct image
-{
-	mlx_image_t	*background;
-}		t_image;
-
-typedef struct texture
-{
-	mlx_texture_t	*background_texture;
-}		t_texture;
 
 typedef struct colour
 {
@@ -79,10 +57,9 @@ typedef struct s_data
 	char		*SO_texture;
 	char		*WE_texture;
 	char		*EA_texture;
-	t_image		image;
-	t_texture	texture;
 	t_colour	floor;
 	t_colour	ceiling;
+	mlx_image_t *img;
 }	t_data;
 
 typedef struct s_gridpos
@@ -92,10 +69,9 @@ typedef struct s_gridpos
 }	t_gridpos;
 
 /* TEXTURE.C */
-void	ft_loadpng(t_data *data);
-void	ft_texture_image(t_data *data);
-void	ft_resize(t_data *data);
-void	ft_image(t_data *data);
+int32_t   	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		ft_draw_square(t_data *data, int x, int y, int width);
+void		ft_put_pixel_to_background(t_data *data);
 
 /* PARSE_INPUT.C */
 int	open_cub(char *argv);
@@ -111,6 +87,5 @@ int		map_open(char **map);
 int		parse_map(t_data *data, char **map);
 
 /* MAIN.C */
-void	error(void);
 
 #endif
