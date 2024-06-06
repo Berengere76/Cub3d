@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 17:05:14 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/06 19:25:48 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ typedef struct s_gridpos
 /* TEXTURE.C */
 int32_t   	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		ft_draw_square(t_data *data, int x, int y, int width);
+void		init_img(t_data *data);
 void		ft_put_pixel_to_background(t_data *data);
+void		ft_draw_minimap(t_data *data);
 
 /* PARSE_INPUT.C */
 int	open_cub(char *argv);

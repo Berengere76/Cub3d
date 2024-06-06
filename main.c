@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 17:13:15 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/06 19:06:27 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ int	main(void)
 	// if (data_init(&data, map))
 	// 	return (1);
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	init_img(&data);
 	ft_put_pixel_to_background(&data);
+	ft_draw_minimap(&data);
+	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return (0);
