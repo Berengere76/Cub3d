@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/05 17:11:28 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:27:42 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ typedef struct s_data
 	double		dirY;
 	double		planeX; //camera plane
 	double		planeY;
+	char		*NO_texture;
+	char		*SO_texture;
+	char		*WE_texture;
+	char		*EA_texture;
 	t_image		image;
 	t_texture	texture;
 	t_colour	floor;
@@ -93,8 +97,11 @@ void	ft_texture_image(t_data *data);
 void	ft_resize(t_data *data);
 void	ft_image(t_data *data);
 
+/* PARSE_INPUT.C */
+int	open_cub(char *argv);
+
 /* CHECK_MAP.C */
-int		map_error(char *message);
+int		ft_error(char *type, char *message);
 int		is_direc(char c);
 int		is_valid(char c);
 int		check_0(char **map, int row, int col);

@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/05 17:11:40 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:49:42 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_background(t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int	bpp;
 	int	size_line;
@@ -85,11 +85,6 @@ int	main(void)
 		"1111  111111 1111111"
 	}; //position 0,0 on top left
 
-	if (map_open(map))
-		return (1);
-	if (data_init(&data, map))
-		return (1);
-
 	//TODO parse inputs (must be between 0 and 255)
 	data.ceiling.R = 0;
 	data.ceiling.G = 0;
@@ -99,7 +94,15 @@ int	main(void)
 	data.floor.B = 255;
 
 	//colour screen background here https://github.com/keuhdall/images_example
+	if (argc != 2)
+		return (ft_error("Input", "wrong number of input arguments"));
+	if (open_cub(argv[1]))
+		return (1);
 
+	if (map_open(map))
+		return (1);
+	if (data_init(&data, map))
+		return (1);
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	ft_image(&data);
 	if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)

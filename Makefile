@@ -9,10 +9,11 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE :=	main.c		\
-			texture.c	\
-			parse_map.c	\
-			check_map.c
+SOURCE :=	main.c			\
+			texture.c		\
+			parse_map.c		\
+			check_map.c		\
+			parse_input.c	\
 
 OBJ 	= $(SOURCE:.c=.o)
 
