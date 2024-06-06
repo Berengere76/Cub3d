@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 10:49:42 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:52:32 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,8 @@ int	data_init(t_data *data, char **map)
 // 	return new;
 // }
 
-int	ft_background(t_data *data)
-{
-
-
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
-	int	bpp;
-	int	size_line;
-	int	endian;
-	
 	t_data	data;
 	static char *map[] = 
 	// {
@@ -85,29 +74,37 @@ int	main(int argc, char **argv)
 		"1111  111111 1111111"
 	}; //position 0,0 on top left
 
-	//TODO parse inputs (must be between 0 and 255)
-	data.ceiling.R = 0;
-	data.ceiling.G = 0;
-	data.ceiling.B = 0;
-	data.floor.R = 255;
-	data.floor.G = 255;
-	data.floor.B = 255;
+	//TODO parse input colours (must be between 0 and 255)
 
+
+	//TODO INIT THIS
+	data.walltexture.NO_path = NULL;
+	data.walltexture.SO_path = NULL;
+	data.walltexture.WE_path = NULL;
+	data.walltexture.EA_path = NULL;
+	data.map = NULL;
+
+	
 	//colour screen background here https://github.com/keuhdall/images_example
 	if (argc != 2)
-		return (ft_error("Input", "wrong number of input arguments"));
-	if (open_cub(argv[1]))
+		return (ft_errorfree("Input", "wrong number of input arguments", &data));
+	if (open_cub(argv[1], &data))
 		return (1);
-
-	if (map_open(map))
+	
+	if (map_open(map, &data))
 		return (1);
 	if (data_init(&data, map))
 		return (1);
-	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	ft_image(&data);
-	if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)
-		error();
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	printf("NO_path: %s\n", data.walltexture.NO_path);
+	printf("SO_path: %s\n", data.walltexture.SO_path);
+	printf("WE_path: %s\n", data.walltexture.WE_path);
+	printf("EA_path: %s\n", data.walltexture.EA_path);
+
+	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	// ft_image(&data);
+	// if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)
+	// 	error();
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
 	return (0);
 }

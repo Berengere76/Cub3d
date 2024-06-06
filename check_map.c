@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:05:02 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 10:46:33 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:36:05 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_0(char **map, int row, int col)
 	return (0);
 }
 
-int	map_open(char **map)
+int	map_open(char **map, t_data *data)
 {
 	int i;
 	int j;
@@ -58,11 +58,11 @@ int	map_open(char **map)
 		while (map[i][j])
 		{
 			if (!(is_valid(map[i][j]) == 1 || is_spc(map[i][j]) == 1))
-				return (ft_error("Map", "invalid character (use 0,1,N,E,S,W)\n"));
+				return (ft_errorfree("Map", "invalid character (use 0,1,N,E,S,W)\n", data));
 			if (map[i][j] == '0')
 			{
 				if (check_0(map, i, j))
-					return (ft_error("Map", "map is not closed\n"));
+					return (ft_errorfree("Map", "map is not closed\n", data));
 			}
 			j++;
 		}

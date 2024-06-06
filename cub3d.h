@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 10:27:42 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:42:06 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,17 @@ typedef struct texture
 	mlx_texture_t	*background_texture;
 }		t_texture;
 
-typedef struct colour
+typedef struct walltexture
 {
-	int	R;
-	int	G;
-	int	B;
-}		t_colour;
+	mlx_texture_t	*NO_walltexture;
+	mlx_texture_t	*SO_walltexture;
+	mlx_texture_t	*WE_walltexture;
+	mlx_texture_t	*EA_walltexture;
+	char			*NO_path;
+	char			*SO_path;
+	char			*WE_path;
+	char			*EA_path;
+}		t_walltexture;
 
 typedef struct s_data
 {
@@ -75,14 +80,12 @@ typedef struct s_data
 	double		dirY;
 	double		planeX; //camera plane
 	double		planeY;
-	char		*NO_texture;
-	char		*SO_texture;
-	char		*WE_texture;
-	char		*EA_texture;
+	t_walltexture	walltexture;
+	char		**map;
 	t_image		image;
 	t_texture	texture;
-	t_colour	floor;
-	t_colour	ceiling;
+	int			floor; //4-bit shift the RGB after making sure it's between 0 and 255
+	int			ceiling;
 }	t_data;
 
 typedef struct s_gridpos
@@ -98,14 +101,18 @@ void	ft_resize(t_data *data);
 void	ft_image(t_data *data);
 
 /* PARSE_INPUT.C */
-int	open_cub(char *argv);
+int		open_cub(char *argv, t_data *data);
 
 /* CHECK_MAP.C */
-int		ft_error(char *type, char *message);
+int		is_spc(char c);
 int		is_direc(char c);
 int		is_valid(char c);
 int		check_0(char **map, int row, int col);
-int		map_open(char **map);
+int		map_open(char **map, t_data *data);
+
+/* ERROR.C */
+int		ft_errorfree(char *type, char *message, t_data *data);
+// int		ft_error(char *type, char *message);
 
 /* PARSE_MAP.C */
 int		parse_map(t_data *data, char **map);
