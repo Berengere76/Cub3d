@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 14:25:06 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 15:05:21 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,26 @@ int	length_map(t_data *data)
 	return (len);
 }
 
-void	ft_draw_square(t_data *data, int x, int y, int width)
+void	ft_draw_square(t_data *data, int x, int y, int size)
 {
 	int	y_buf;
 	int	x_buf;
+	int	width;
+	int	height;
 
 	y_buf = y;
 	x_buf = x;
+	width = data->scalew;
+	height = data->scaleh;
+	if (size > 0)
+	{
+		width = size;
+		height = size;
+	}
 	while (x < (width + x_buf))
 	{
 		y = y_buf;
-		while (y < (width + y_buf))
+		while (y < (height + y_buf))
 		{
 			if (x < WIN_W && y < WIN_H)
 				mlx_put_pixel(data->img, x, y, ft_pixel(0, 0, 0, 255));
@@ -62,9 +71,18 @@ void	ft_draw_square(t_data *data, int x, int y, int width)
 
 void	init_img(t_data *data)
 {
-	data->max_len = length_map(data);
+	int	map_length;
+	int map_height;
+
+	map_length = length_map(data);
+	map_height = ft_tablen(data->map);
+	if (map_length >= map_height)
+		data->max_len = map_length;
+	else
+		data->max_len = map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	data->scale = WIN_W / (data->max_len * (WIN_W / 150));
+	data->scalew = WIN_W / (data->max_len * (WIN_W / 150));
+	data->scaleh = WIN_H / (data->max_len * (WIN_H / 150));
 }
 
 void	ft_put_pixel_to_background(t_data *data)
@@ -102,7 +120,7 @@ void	ft_draw_minimap(t_data *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == '1')
-				ft_draw_square(data, (j * data->scale) + 20, (i * data->scale) + 20, data->scale);
+				ft_draw_square(data, (j * data->scalew) + 20, (i * data->scaleh) + 20, 0);
 			j++;
 		}
 		i++;

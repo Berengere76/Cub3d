@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 13:55:52 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 14:59:11 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 /* ***************** */
 
 # define WIN_W 640
-# define WIN_H 640
+# define WIN_H 480
 # define BLOCK_RES 64
 
 /* ***************** */
@@ -53,7 +53,8 @@ typedef struct s_data
 	int				width;
 	int				height;
 	int				max_len;
-	int				scale;
+	int				scalew;
+	int				scaleh;
 	double			posx; //start position of the player
 	double			posy;
 	double			dirx; //start direction of player's POV
@@ -121,6 +122,7 @@ int		get_colours(char *line, t_data *data);
 int		get_textures(char *line, t_data *data);
 
 /* GET_MAP.C */
+int		ft_tablen(char **tab);
 bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
 
