@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 11:33:07 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:41:14 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,13 @@ int	data_init(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
 
+	t_data	data;
+	//colour screen background here https://github.com/keuhdall/images_example
 	if (argc != 2)
 		return (ft_errorfree("Input", "wrong number of input arguments", &data));
 	data_init (&data);
-	if (open_cub(argv[1], &data))
-		return (1);
-	if (map_is_open(&data))
-		return (1);
-	if (parse_map(&data))
+	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data))
 		return (1);
 
 //PRINT INPUT VARIABLES
@@ -63,13 +60,14 @@ int	main(int argc, char **argv)
 		printf("%s\n", data.map[i]);
 		i++;
 	}
+/////////////////////////
 
-	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	// ft_image(&data);
-	// if (mlx_image_to_window(data.mlx, data.image.background, 0, 0) < 0)
-	// 	error();
-	// mlx_loop(data.mlx);
-	// mlx_terminate(data.mlx);
-	ft_free(&data);
+	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	init_img(&data);
+	ft_put_pixel_to_background(&data);
+	ft_draw_minimap(&data);
+	mlx_image_to_window(data.mlx, data.img, 0, 0);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
 	return (0);
 }

@@ -9,15 +9,17 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE :=	main.c							\
-			get_inputs/check_map.c			\
-			get_inputs/error.c				\
-			get_inputs/get_colours.c		\
-			get_inputs/get_map.c			\
-			get_inputs/get_textures.c		\
-			get_inputs/gnl_utils.c			\
-			get_inputs/gnl.c				\
-			get_inputs/parse_input.c		\
+SOURCE :=	main.c						\
+			texture.c					\
+			movements.c					\
+			get_inputs/check_map.c		\
+			get_inputs/error.c			\
+			get_inputs/get_colours.c	\
+			get_inputs/get_map.c		\
+			get_inputs/get_textures.c	\
+			get_inputs/gnl_utils.c		\
+			get_inputs/gnl.c			\
+			get_inputs/parse_input.c	\
 			get_inputs/parse_map.c
 
 OBJ 	= $(SOURCE:.c=.o)
