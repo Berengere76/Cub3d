@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 12:13:02 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 12:48:38 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void	get_player_pos(t_data *data)
 		{
 			if (map[y][x] == 2)
 			{
-				data->posX = x;
-				data->posY = y;
+				data->posx = x;
+				data->posy = y;
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 12:41:14 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:56:01 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	main(int argc, char **argv)
 	printf("EA_path: %s\n", data.walltexture.ea_path);
 	printf("F colour (14827520): %d\n", data.floor);
 	printf("C colour (14868480): %d\n", data.ceiling);
+	printf("start positionx: %f - %f\n", data.posx, data.posx / 64);
+	printf("start positiony: %f - %f\n", data.posy, data.posy / 64);
+	printf("start directionx: %f\n", data.dirx);
+	printf("start directiony: %f\n", data.diry);
 	int	i = 0;
 	while (data.map[i])
 	{
@@ -62,12 +66,12 @@ int	main(int argc, char **argv)
 	}
 /////////////////////////
 
-	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	init_img(&data);
-	ft_put_pixel_to_background(&data);
-	ft_draw_minimap(&data);
-	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	// init_img(&data);
+	// ft_put_pixel_to_background(&data);
+	// ft_draw_minimap(&data);
+	// mlx_image_to_window(data.mlx, data.img, 0, 0);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
 	return (0);
 }
