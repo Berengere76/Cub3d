@@ -6,11 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 15:11:04 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:39:33 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	free_table(char **tab)
 {
@@ -30,18 +30,18 @@ void	free_table(char **tab)
 
 void	ft_free(t_data *data)
 {
-	if (data->walltexture.NO_path)
-		free(data->walltexture.NO_path);
-	if (data->walltexture.SO_path)
-		free(data->walltexture.SO_path);
-	if (data->walltexture.WE_path)
-		free(data->walltexture.WE_path);
-	if (data->walltexture.EA_path)
-		free(data->walltexture.EA_path);
+	if (data->walltexture.no_path)
+		free(data->walltexture.no_path);
+	if (data->walltexture.so_path)
+		free(data->walltexture.so_path);
+	if (data->walltexture.we_path)
+		free(data->walltexture.we_path);
+	if (data->walltexture.ea_path)
+		free(data->walltexture.ea_path);
 	free_table(data->map);
 }
 
-int ft_errorfree(char *type, char *message, t_data *data)
+int	ft_errorfree(char *type, char *message, t_data *data)
 {
 	write (2, "Error\n", 6);
 	write (2, type, ft_strlen(type));

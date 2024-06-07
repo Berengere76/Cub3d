@@ -6,39 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:34:45 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 16:50:09 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:39:58 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-int	ft_findnl(char *buffer)
-{
-	int	i;
-
-	i = 0;
-	while (buffer[i])
-	{
-		if (buffer[i] == '\n')
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-char	*ft_strcpy(char *str1, char *str2)
-{
-	int	i;
-
-	i = 0;
-	while (str2[i])
-	{
-		str1[i] = str2[i];
-		i++;
-	}
-	str1[i] = '\0';
-	return (str1);
-}
+#include "../cub3d.h"
 
 static char	*_ft_strljoin(char *s1, char *s2, int len)
 {

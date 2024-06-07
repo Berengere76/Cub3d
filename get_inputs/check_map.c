@@ -6,36 +6,39 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:05:02 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 14:36:05 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:39:06 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-//TODO Check isspace - does not count \n as ok of course
-int	is_spc(char c)
+bool	is_spc(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == 'f');
 }
 
-int	is_direc(char c)
+bool	is_direc(char c)
 {
-	return (c == 'N' || c == 'E' || c == 'S' || c== 'W');
+	return (c == 'N' || c == 'E' || c == 'S' || c == 'W');
 }
 
-int	is_valid(char c)
+bool	is_valid(char c)
 {
 	return (c == '1' || c == '0' || is_direc(c));
 }
 
-int	check_0(char **map, int row, int col)
+//checks if 0 is surrounded by map characters
+bool	check_0(char **map, size_t row, size_t col)
 {
-	int	nb_rows;
+	size_t	nb_rows;
 
 	nb_rows = 0;
 	while (map[nb_rows])
 		nb_rows++;
 	if (row == 0 || col == 0 || row == nb_rows - 1)
+		return (1);
+	if (col >= ft_strlen(map[row - 1])
+		|| col >= ft_strlen(map[row + 1]))
 		return (1);
 	if (!is_valid(map[row - 1][col]) ||
 			!is_valid(map[row + 1][col]) ||
@@ -45,23 +48,25 @@ int	check_0(char **map, int row, int col)
 	return (0);
 }
 
-int	map_open(char **map, t_data *data)
+int	map_is_open(t_data *data)
 {
-	int i;
-	int j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (data->map[i][j])
 		{
-			if (!(is_valid(map[i][j]) == 1 || is_spc(map[i][j]) == 1))
-				return (ft_errorfree("Map", "invalid character (use 0,1,N,E,S,W)\n", data));
-			if (map[i][j] == '0')
+			if (!(is_valid(data->map[i][j]) == 1
+				|| data->map[i][j] == ' '))
+				return (ft_errorfree("Map",
+						"invalid character (use 0,1,N,E,S,W,' ')\n", data));
+			if (data->map[i][j] == '0')
 			{
-				if (check_0(map, i, j))
+				if (check_0(data->map, i, j))
 					return (ft_errorfree("Map", "map is not closed\n", data));
 			}
 			j++;

@@ -6,13 +6,13 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 14:35:25 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:28:34 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	_start_dir(char dir, char axis)
+static int	_start_dir(char dir, char axis)
 {
 	if ((dir == 'N' && axis == 'Y') || (dir == 'E' && axis == 'X'))
 		return (1);
@@ -21,32 +21,36 @@ int	_start_dir(char dir, char axis)
 	return (0);
 }
 
-int	parse_map(t_data *data, char **map)
+static void	_save_start_pos(t_data *data, size_t i, size_t j)
+{
+	data->posx = j * BLOCK_RES;
+	data->posy = i * BLOCK_RES;
+	data->dirx = _start_dir(data->map[i][j], 'X');
+	data->diry = _start_dir(data->map[i][j], 'Y');
+}
+
+int	parse_map(t_data *data)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (j < ft_strlen(map[i]))
+		while (j < ft_strlen(data->map[i]))
 		{
-			if (is_direc(map[i][j]) && data->posX != -1)
-				return (ft_errorfree("Map", "more than one player start point given\n", data));
-			if (is_direc(map[i][j]) && data->posX == -1)
-			{
-				data->posX = j * BLOCK_RES;
-				data->posY = i * BLOCK_RES;
-				data->dirX = _start_dir(map[i][j], 'X');
-				data->dirY = _start_dir(map[i][j], 'Y');
-			}
+			if (is_direc(data->map[i][j]) && data->posx != -1)
+				return (ft_errorfree("Map",
+						"more than one player start point given\n", data));
+			if (is_direc(data->map[i][j]) && data->posx == -1)
+				_save_start_pos(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	if (data->posX == -1)
+	if (data->posx == -1)
 		return (ft_errorfree("Map", "no player start point given\n", data));
 	return (0);
 }

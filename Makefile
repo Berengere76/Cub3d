@@ -9,16 +9,16 @@ LIBMLX 		= $(MLX)/libmlx42.a
 FT			= Libft
 LIBFT		= $(FT)/libft.a
 
-SOURCE :=	main.c			\
-			texture.c		\
-			parse_map.c		\
-			check_map.c		\
-			parse_input.c	\
-			error.c			\
-			gnl.c			\
-			get_colours.c	\
-			get_textures.c	\
-			get_map.c
+SOURCE :=	main.c							\
+			get_inputs/check_map.c			\
+			get_inputs/error.c				\
+			get_inputs/get_colours.c		\
+			get_inputs/get_map.c			\
+			get_inputs/get_textures.c		\
+			get_inputs/gnl_utils.c			\
+			get_inputs/gnl.c				\
+			get_inputs/parse_input.c		\
+			get_inputs/parse_map.c
 
 OBJ 	= $(SOURCE:.c=.o)
 

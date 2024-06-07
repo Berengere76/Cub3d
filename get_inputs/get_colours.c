@@ -6,11 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:20:30 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 18:38:45 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:39:38 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	_is_id(char c)
 {
@@ -22,11 +22,10 @@ static int	_is_num(char c)
 	return (c >= '0' && c <= '9');
 }
 
-static int _atouc(char **temp)
+static int	_atouc(char **temp)
 {
 	int	i;
 	int	output;
-
 
 	i = 0;
 	output = 0;
@@ -47,10 +46,10 @@ static int _atouc(char **temp)
 
 int	ctoi(char *colours)
 {
-	int	i;
-	int	rgb;
-	int	num;
-	char *temp;
+	int		i;
+	int		rgb;
+	int		num;
+	char	*temp;
 
 	i = 3;
 	temp = colours;
@@ -94,7 +93,7 @@ int	get_colours(char *line, t_data *data)
 	*temp = '\0';
 	rgb = ctoi(colours);
 	if (rgb == -1)
-		return(ft_errorfree("Input", "invalid colour (RGB 255,255,255)\n", data));
+		return (ft_errorfree("Input", "invalid colour (R,G,B)\n", data));
 	if (c == 'F')
 		data->floor = rgb;
 	else if (c == 'C')

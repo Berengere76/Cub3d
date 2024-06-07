@@ -6,18 +6,18 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/06 18:44:20 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:16:54 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 //check for .cub extension
 int	check_cub(char *argv)
 {
-	char *cub;
-	int	i;
-	int	j;
+	char	*cub;
+	int		i;
+	int		j;
 
 	cub = ".cub";
 	i = ft_strlen(argv);
@@ -36,13 +36,13 @@ int	check_cub(char *argv)
 
 int	empty_line(char *line)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])
 	{
 		if (!is_spc(line[i]))
-			break;
+			break ;
 		i++;
 	}
 	if (i == ft_strlen(line))
@@ -50,11 +50,9 @@ int	empty_line(char *line)
 	return (0);
 }
 
-
-
 int	extract_data(char *line, t_data *data)
 {
-	char *temp;
+	char	*temp;
 
 	temp = line;
 	while (is_spc(*temp))
@@ -70,14 +68,15 @@ int	extract_data(char *line, t_data *data)
 		if (get_colours(line, data))
 			return (1);
 	}
-	else //TODO make sure the map is read only if others are ok
+	else
 	{
-		if (get_map(temp, data))
+		if (is_not_last(data))
+			return (1);
+		if (get_map(line, data))
 			return (1);
 	}
 	return (0);
 }
-
 
 int	read_cub(int fd, t_data *data)
 {
@@ -87,7 +86,7 @@ int	read_cub(int fd, t_data *data)
 	{
 		line = gnl(fd);
 		if (!line)
-			break;
+			break ;
 		line[ft_strlen(line) - 1] = '\0';
 		if (!empty_line(line))
 		{
@@ -108,7 +107,8 @@ int	open_cub(char *argv, t_data *data)
 	int	fd;
 
 	if (check_cub(argv))
-		return (ft_errorfree("Input", "invalid file extension (need \".cub\")", data));
+		return (ft_errorfree("Input",
+				"invalid file extension (need \".cub\")", data));
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		return (ft_errorfree("Input", "failed to open input file", data));
