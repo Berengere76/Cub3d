@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colours.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:20:30 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 10:39:38 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:03:50 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int	ctoi(char *colours)
 		if (num == -1)
 			return (-1);
 		rgb += num;
-		rgb <<= 4;
+		rgb <<= 8;
 		if (*temp == ',')
 			temp++;
 		i--;
 	}
-	rgb <<= 4;
+	rgb += 255;
 	return (rgb);
 }
 

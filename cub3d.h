@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 12:41:04 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:55:52 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 /* ***************** */
 
 # define WIN_W 640
-# define WIN_H 512
+# define WIN_H 640
 # define BLOCK_RES 64
 
 /* ***************** */
@@ -52,6 +52,8 @@ typedef struct s_data
 	void			*mlx;
 	int				width;
 	int				height;
+	int				max_len;
+	int				scale;
 	double			posx; //start position of the player
 	double			posy;
 	double			dirx; //start direction of player's POV
@@ -77,6 +79,8 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		init_img(t_data *data);
 void		ft_put_pixel_to_background(t_data *data);
 void		ft_draw_minimap(t_data *data);
+
+int			length_map(t_data *data);
 
 /* MOVEMENTS.C */
 void		get_player_pos(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 11:16:54 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:33:54 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int	read_cub(int fd, t_data *data)
 		line = gnl(fd);
 		if (!line)
 			break ;
-		line[ft_strlen(line) - 1] = '\0';
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		if (!empty_line(line))
 		{
 			if (extract_data(line, data))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 12:56:01 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:39:32 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	data_init(t_data *data)
 	data->width = WIN_W;
 	data->height = WIN_H;
 	data->posx = -1;
+	data->posy = -1;
 	data->planex = 0;
 	data->planey = 0.6;
 	return (0);
@@ -43,7 +44,7 @@ int	main(int argc, char **argv)
 	//colour screen background here https://github.com/keuhdall/images_example
 	if (argc != 2)
 		return (ft_errorfree("Input", "wrong number of input arguments", &data));
-	data_init (&data);
+	data_init(&data);
 	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data))
 		return (1);
 
@@ -66,12 +67,12 @@ int	main(int argc, char **argv)
 	}
 /////////////////////////
 
-	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	// init_img(&data);
-	// ft_put_pixel_to_background(&data);
-	// ft_draw_minimap(&data);
-	// mlx_image_to_window(data.mlx, data.img, 0, 0);
-	// mlx_loop(data.mlx);
-	// mlx_terminate(data.mlx);
+	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	init_img(&data);
+	ft_put_pixel_to_background(&data);
+	ft_draw_minimap(&data);
+	mlx_image_to_window(data.mlx, data.img, 0, 0);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
 	return (0);
 }
