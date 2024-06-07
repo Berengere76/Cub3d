@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 19:25:48 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 12:09:20 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		init_img(t_data *data);
 void		ft_put_pixel_to_background(t_data *data);
 void		ft_draw_minimap(t_data *data);
+
+/* MOVEMENTS.C */
+void		get_player_pos(t_data *data);
+void		put_player_on_minimap(t_data *data, int x, int y);
 
 /* PARSE_INPUT.C */
 int	open_cub(char *argv);

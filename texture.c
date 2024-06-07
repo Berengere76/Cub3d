@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/06 19:47:19 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 12:13:02 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ char map[6][5] = {
 	{1, 1, 1, 1, 1},
 	{1, 0, 0, 0, 1},
 	{1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 1},
+	{1, 0, 2, 0, 1},
 	{1, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1},
 };
 
-int32_t    ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 void	ft_draw_square(t_data *data, int x, int y, int width)
 {
 	int	y_buf;
 	int	x_buf;
-	
+
 	y_buf = y;
 	x_buf = x;
 	while (x < (width + x_buf))
@@ -52,11 +52,11 @@ void	init_img(t_data *data)
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 }
 
-void ft_put_pixel_to_background(t_data *data)
+void	ft_put_pixel_to_background(t_data *data)
 {
 	int	x;
 	int	y;
-	
+
 	x = 0;
 	y = 0;
 	while (x < WIN_W)
@@ -84,12 +84,40 @@ void	ft_draw_minimap(t_data *data)
 	while (i < 6)
 	{
 		j = 0;
-		while(j < 5)
+		while (j < 5)
 		{
 			if (map[i][j] == 1)
 				ft_draw_square(data, (j * 30) + 20, (i * 30) + 20, 29);
 			j++;
 		}
 		i++;
+	}
+}
+
+void	get_player_pos(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == 2)
+			{
+				data->posX = x;
+				data->posY = y;
+			}
+		}
+	}
+}
+
+void	put_player_on_minimap(t_data *data, int x, int y)
+{
+	if (map[y][x] == 2)
+	{
+		ft_draw_square(data, x, y, 10);
 	}
 }

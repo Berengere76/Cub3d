@@ -14,6 +14,7 @@ SOURCE :=	main.c			\
 			parse_map.c		\
 			check_map.c		\
 			parse_input.c	\
+			movements.c		\
 
 OBJ 	= $(SOURCE:.c=.o)
 
