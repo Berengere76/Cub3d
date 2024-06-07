@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 13:38:36 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/07 15:40:18 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	_start_dir(char dir, char axis)
 
 static void	_save_start_pos(t_data *data, size_t i, size_t j)
 {
-	data->posx = j * BLOCK_RES;
-	data->posy = i * BLOCK_RES;
+	data->posx = (j * BLOCK_RES) + (BLOCK_RES / 2);
+	data->posy = (i * BLOCK_RES) + (BLOCK_RES / 2);
 	data->dirx = _start_dir(data->map[i][j], 'X');
 	data->diry = _start_dir(data->map[i][j], 'Y');
 }

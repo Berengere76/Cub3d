@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 15:05:21 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:40:47 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int	length_map(t_data *data)
 	return (len);
 }
 
+//added a functionality to avoid the norm limitation of 4 variables -
+//if you want to draw a square, set size to the height/width you want.
+//if size == 0 then it will take the height and width from data->scalew/h
+//to draw minimap square sizes
 void	ft_draw_square(t_data *data, int x, int y, int size)
 {
 	int	y_buf;
@@ -71,6 +75,8 @@ void	ft_draw_square(t_data *data, int x, int y, int size)
 
 void	init_img(t_data *data)
 {
+	//now checks both the height and width of the map, and sets data->max_len
+	//(and therefore the scaling) to whichever is longest
 	int	map_length;
 	int map_height;
 
@@ -81,8 +87,9 @@ void	init_img(t_data *data)
 	else
 		data->max_len = map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	data->scalew = WIN_W / (data->max_len * (WIN_W / 150));
-	data->scaleh = WIN_H / (data->max_len * (WIN_H / 150));
+	//added another scaling factor to .h so height and width can be different
+	data->scalew = WIN_W / (data->max_len * (WIN_W / 125));
+	data->scaleh = WIN_H / (data->max_len * (WIN_H / 125));
 }
 
 void	ft_put_pixel_to_background(t_data *data)
