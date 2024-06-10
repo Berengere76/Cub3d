@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:52:06 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 14:24:55 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:57:18 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_square(t_data *data, int x, int y, int size)
 		y = y_buf;
 		while (y < (height + y_buf))
 		{
-			if (x < WIN_W && y < WIN_H)
+			if (x > 0 && y > 0 && x < WIN_W && y < WIN_H)
 				mlx_put_pixel(data->img, x, y, ft_pixel(0, 0, 0, 255));
 			y++;
 		}
@@ -67,10 +67,11 @@ void	ft_draw_square_red(t_data *data, int x, int y, int size)
 		y = y_buf;
 		while (y < (height + y_buf))
 		{
-			if (x < WIN_W && y < WIN_H)
+			if (x > 0 && y > 0 && x < WIN_W && y < WIN_H)
 				mlx_put_pixel(data->img, x, y, ft_pixel(255, 0, 0, 255));
 			y++;
 		}
+		
 		x++;
 	}
 }

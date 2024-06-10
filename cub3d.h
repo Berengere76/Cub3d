@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 16:21:30 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:59:07 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <unistd.h>
 # include <stdio.h> //TODO REMOVE (printf)
 
-# define MOVESPEED 5
+# define MOVESPEED 4.0f
 
 /* ***************** */
 /*        Kiri       */
@@ -87,11 +87,10 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		ft_draw_minimap(t_data *data);
 
 /* MOVEMENTS.C */
+void		move_frontback(t_data *data, int dir);
+void		move_latteral(t_data *data, int dir);
+void		rotate(t_data *data, int dir);
 void		ft_hook(void *param);
-void		move_up(t_data *data);
-void		move_down(t_data *data);
-void		move_left(t_data *data);
-void		move_right(t_data *data);
 
 /* PARSE_INPUT.C */
 int		open_cub(char *argv, t_data *data);
