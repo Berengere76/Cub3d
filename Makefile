@@ -12,6 +12,7 @@ LIBFT		= $(FT)/libft.a
 SOURCE :=	main.c						\
 			texture.c					\
 			movements.c					\
+			minimap.c					\
 			get_inputs/check_map.c		\
 			get_inputs/error.c			\
 			get_inputs/get_colours.c	\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 15:40:47 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:13:54 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,6 @@ int	length_map(t_data *data)
 		i++;
 	}
 	return (len);
-}
-
-//added a functionality to avoid the norm limitation of 4 variables -
-//if you want to draw a square, set size to the height/width you want.
-//if size == 0 then it will take the height and width from data->scalew/h
-//to draw minimap square sizes
-void	ft_draw_square(t_data *data, int x, int y, int size)
-{
-	int	y_buf;
-	int	x_buf;
-	int	width;
-	int	height;
-
-	y_buf = y;
-	x_buf = x;
-	width = data->scalew;
-	height = data->scaleh;
-	if (size > 0)
-	{
-		width = size;
-		height = size;
-	}
-	while (x < (width + x_buf))
-	{
-		y = y_buf;
-		while (y < (height + y_buf))
-		{
-			if (x < WIN_W && y < WIN_H)
-				mlx_put_pixel(data->img, x, y, ft_pixel(0, 0, 0, 255));
-			y++;
-		}
-		x++;
-	}
 }
 
 void	init_img(t_data *data)
@@ -111,53 +78,5 @@ void	ft_put_pixel_to_background(t_data *data)
 			y++;
 		}
 		x++;
-	}
-}
-
-void	ft_draw_minimap(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (data->map[i])
-	{
-		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == '1')
-				ft_draw_square(data, (j * data->scalew) + 20, (i * data->scaleh) + 20, 0);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	get_player_pos(t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = -1;
-	while (data->map[++y])
-	{
-		x = -1;
-		while (data->map[y][++x])
-		{
-			if (data->map[y][x] == 2)
-			{
-				data->posx = x;
-				data->posy = y;
-			}
-		}
-	}
-}
-
-void	put_player_on_minimap(t_data *data, int x, int y)
-{
-	if (data->map[y][x] == 2)
-	{
-		ft_draw_square(data, x, y, 10);
 	}
 }

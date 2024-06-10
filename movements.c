@@ -6,43 +6,58 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:27:34 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 12:12:12 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:24:10 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minilibx/mlx42.h"
 
-// void	player_movements(mlx_key_data_t keydata, t_data *data)
-// {
-// 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-// 		move_up(&data);
-// 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-// 		move_down(&data);
-// 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-// 		move_left(&data);
-// 	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-// 		move_right(&data);
-// 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-// 		mlx_close_window(data->mlx);
-// }
+void	ft_hook(void *param)
+{
+	t_data	*data;
 
-// void	move_up(t_data *data)
-// {
-	
-// }
+	data = param;
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+		move_up(data);
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
+		move_down(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+		move_left(data);
+	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+		move_right(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx);
+}
 
-// void	move_down(t_data *data)
-// {
-	
-// }
+void	move_up(t_data *data)
+{	
+	data->posy += sin(data->angle) * MOVESPEED;
+	data->posx += cos(data->angle) * MOVESPEED;
+	ft_put_pixel_to_background(data);
+	ft_draw_minimap(data);	
+}
 
-// void	move_left(t_data *data)
-// {
-	
-// }
+void	move_down(t_data *data)
+{
+	data->posy -= sin(data->angle) * MOVESPEED;
+	data->posx -= cos(data->angle) * MOVESPEED;
+	ft_put_pixel_to_background(data);
+	ft_draw_minimap(data);	
+}
 
-// void	move_right()
-// {
-	
-// }
+void	move_left(t_data *data)
+{
+	data->posy += sin(data->angle + 90) * MOVESPEED;
+	data->posx -= cos(data->angle + 90) * MOVESPEED;
+	ft_put_pixel_to_background(data);
+	ft_draw_minimap(data);	
+}
+
+void	move_right(t_data *data)
+{
+	data->posy -= sin(data->angle) * MOVESPEED;
+	data->posx += cos(data->angle) * MOVESPEED;
+	ft_put_pixel_to_background(data);
+	ft_draw_minimap(data);	
+}
