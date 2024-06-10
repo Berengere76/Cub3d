@@ -20,7 +20,8 @@ SOURCE :=	main.c						\
 			get_inputs/gnl_utils.c		\
 			get_inputs/gnl.c			\
 			get_inputs/parse_input.c	\
-			get_inputs/parse_map.c
+			get_inputs/parse_map.c		\
+			find_intercept.c
 
 OBJ 	= $(SOURCE:.c=.o)
 

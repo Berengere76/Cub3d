@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 14:59:11 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:36:23 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@
 # include "minilibx/mlx42.h"
 # include "Libft/libft.h"
 # include <unistd.h>
+# include <math.h>
 # include <stdio.h> //TODO REMOVE (printf)
 
 /* ***************** */
-/*        Kiri       */
+/*      DEFINES      */
 /* ***************** */
 
 # define WIN_W 640
 # define WIN_H 480
 # define BLOCK_RES 64
+# define FOV_RAD 1.0472 // 60 degree FOV in radians
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -57,8 +59,7 @@ typedef struct s_data
 	int				scaleh;
 	double			posx; //start position of the player
 	double			posy;
-	double			dirx; //start direction of player's POV
-	double			diry;
+	double			dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
 	t_walltexture	walltexture;
@@ -125,5 +126,8 @@ int		get_textures(char *line, t_data *data);
 int		ft_tablen(char **tab);
 bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
+
+/* FIND_INTERCEPT.C */
+double	find_hor_intercept(t_data *data, double angle);
 
 #endif

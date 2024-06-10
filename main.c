@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 14:59:22 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:43:44 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ int	main(int argc, char **argv)
 	printf("EA_path: %s\n", data.walltexture.ea_path);
 	printf("F colour (14827520): %d\n", data.floor);
 	printf("C colour (14868480): %d\n", data.ceiling);
-	printf("start positionx: %f - %f\n", data.posx, data.posx / 64);
-	printf("start positiony: %f - %f\n", data.posy, data.posy / 64);
-	printf("start directionx: %f\n", data.dirx);
-	printf("start directiony: %f\n", data.diry);
+	printf("start position x: %f - %f\n", data.posx, data.posx / 64);
+	printf("start position y: %f - %f\n", data.posy, data.posy / 64);
+	printf("start direction rad: %f\n", data.dir);
 	int	i = 0;
 	while (data.map[i])
 	{
@@ -66,13 +65,18 @@ int	main(int argc, char **argv)
 		i++;
 	}
 /////////////////////////
+	// int	angle;
 
-	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	init_img(&data);
-	ft_put_pixel_to_background(&data);
-	ft_draw_minimap(&data);
-	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	// angle = FOV_RAD / 2;
+	// while (angle < )
+	find_hor_intercept(&data, data.dir + 0.785398);
+
+	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	// init_img(&data);
+	// ft_put_pixel_to_background(&data);
+	// ft_draw_minimap(&data);
+	// mlx_image_to_window(data.mlx, data.img, 0, 0);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
 	return (0);
 }
