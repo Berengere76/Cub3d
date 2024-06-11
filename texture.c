@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/07 15:05:21 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/11 11:18:17 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,12 @@ void	ft_draw_square(t_data *data, int x, int y, int size)
 
 void	init_img(t_data *data)
 {
-	int	map_length;
-	int map_height;
-
-	map_length = length_map(data);
-	map_height = ft_tablen(data->map);
-	if (map_length >= map_height)
-		data->max_len = map_length;
+	data->map_length = length_map(data);
+	data->map_height = ft_tablen(data->map);
+	if (data->map_length >= data->map_height)
+		data->max_len = data->map_length;
 	else
-		data->max_len = map_height;
+		data->max_len = data->map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 	data->scalew = WIN_W / (data->max_len * (WIN_W / 150));
 	data->scaleh = WIN_H / (data->max_len * (WIN_H / 150));

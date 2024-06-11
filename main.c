@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 17:43:44 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:20:01 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	data_init(t_data *data)
 	data->map = NULL;
 	data->ceiling = -1;
 	data->floor = -1;
-	data->width = WIN_W;
-	data->height = WIN_H;
+	data->win_width = WIN_W;
+	data->win_height = WIN_H;
 	data->posx = -1;
 	data->posy = -1;
 	data->planex = 0;
@@ -69,10 +69,11 @@ int	main(int argc, char **argv)
 
 	// angle = FOV_RAD / 2;
 	// while (angle < )
-	find_hor_intercept(&data, data.dir + 0.785398);
 
-	// data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
-	// init_img(&data);
+	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	init_img(&data);
+	find_hor_intercept(&data, data.dir + -0.785398);
+	find_vert_intercept(&data, data.dir + -0.785398);
 	// ft_put_pixel_to_background(&data);
 	// ft_draw_minimap(&data);
 	// mlx_image_to_window(data.mlx, data.img, 0, 0);

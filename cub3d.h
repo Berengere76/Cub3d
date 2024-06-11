@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 17:36:23 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:15:59 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ typedef struct walltexture
 typedef struct s_data
 {
 	void			*mlx;
-	int				width;
-	int				height;
+	int				win_width;
+	int				win_height;
+	int				map_length;
+	int				map_height;
 	int				max_len;
 	int				scalew;
 	int				scaleh;
@@ -128,6 +130,7 @@ bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
 
 /* FIND_INTERCEPT.C */
-double	find_hor_intercept(t_data *data, double angle);
+t_gridpos	find_hor_intercept(t_data *data, double angle);
+t_gridpos	find_vert_intercept(t_data *data, double angle);
 
 #endif
