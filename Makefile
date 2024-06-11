@@ -21,7 +21,8 @@ SOURCE :=	main.c						\
 			get_inputs/gnl.c			\
 			get_inputs/parse_input.c	\
 			get_inputs/parse_map.c		\
-			find_intercept.c
+			find_intercept.c			\
+			raycast.c
 
 OBJ 	= $(SOURCE:.c=.o)
 

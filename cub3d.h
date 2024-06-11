@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/11 12:15:59 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:03:18 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_data
 	int				max_len;
 	int				scalew;
 	int				scaleh;
-	double			posx; //start position of the player
-	double			posy;
+	int				posx; //start position of the player
+	int				posy;
 	double			dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
@@ -73,8 +73,8 @@ typedef struct s_data
 
 typedef struct s_gridpos
 {
-	double		x;
-	double		y;
+	int		x;
+	int		y;
 }	t_gridpos;
 
 /* TEXTURE.C */
@@ -130,7 +130,10 @@ bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
 
 /* FIND_INTERCEPT.C */
-t_gridpos	find_hor_intercept(t_data *data, double angle);
-t_gridpos	find_vert_intercept(t_data *data, double angle);
+double	find_hor_intercept(t_data *data, double angle);
+double	find_vert_intercept(t_data *data, double angle);
+
+/* RAYCAST.C */
+void	shortest_ray(t_data *data);
 
 #endif

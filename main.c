@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/11 15:16:11 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:48:53 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	main(int argc, char **argv)
 	printf("EA_path: %s\n", data.walltexture.ea_path);
 	printf("F colour (14827520): %d\n", data.floor);
 	printf("C colour (14868480): %d\n", data.ceiling);
-	printf("start position x: %f - %f\n", data.posx, data.posx / 64);
-	printf("start position y: %f - %f\n", data.posy, data.posy / 64);
+	printf("start position x: %d - %d\n", data.posx, data.posx / 64);
+	printf("start position y: %d - %d\n", data.posy, data.posy / 64);
 	printf("start direction rad: %f\n", data.dir);
 	int	i = 0;
 	while (data.map[i])
@@ -72,24 +72,7 @@ int	main(int argc, char **argv)
 
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	init_img(&data);
-	// printf("------------------1/4 pi \n");
-	// find_hor_intercept(&data, data.dir - 0.785398);
-	// printf("------------------3/4 pi \n");
-	// find_hor_intercept(&data, data.dir + 0.785398);
-	// printf("------------------5/4 pi \n");
-	// find_hor_intercept(&data, data.dir + (3 * 0.785398));
-	// printf("------------------7/4 pi \n");
-	// find_hor_intercept(&data, data.dir + (5 * 0.785398));
-	printf("------------------VERT pi \n");
-	printf("------------------1/4 pi \n");
-	find_vert_intercept(&data, data.dir - 0.785398);
-	printf("------------------3/4 pi \n");
-	find_vert_intercept(&data, data.dir + 0.785398);
-	printf("------------------5/4 pi \n");
-	find_vert_intercept(&data, data.dir + (3 * 0.785398));
-	printf("------------------7/4 pi \n");
-	find_vert_intercept(&data, data.dir + (5 * 0.785398));
-	// find_vert_intercept(&data, data.dir + 0.785398);
+	raycast(&data);
 	// ft_put_pixel_to_background(&data);
 	// ft_draw_minimap(&data);
 	// mlx_image_to_window(data.mlx, data.img, 0, 0);
