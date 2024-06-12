@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/11 18:03:18 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:01:06 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "Libft/libft.h"
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 # include <stdio.h> //TODO REMOVE (printf)
 
 /* ***************** */
@@ -59,8 +60,8 @@ typedef struct s_data
 	int				max_len;
 	int				scalew;
 	int				scaleh;
-	int				posx; //start position of the player
-	int				posy;
+	double			posx; //start position of the player
+	double			posy;
 	double			dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
@@ -73,8 +74,8 @@ typedef struct s_data
 
 typedef struct s_gridpos
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 }	t_gridpos;
 
 /* TEXTURE.C */
