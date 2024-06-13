@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:08:28 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 13:15:04 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:05:10 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,18 @@
 bool	is_wall(t_data *data, t_gridpos intercept)
 {
 	if (intercept.x > (data->map_length * BLOCK_RES)
-		|| intercept.x < 0 || intercept.y < 0
-		|| intercept.y > (data->map_height * BLOCK_RES)
-		|| isnan(intercept.x) || isnan(intercept.y))
-	{
-		// printf("OFFMAP\n");
+			|| intercept.x < 0 || intercept.y < 0
+			|| intercept.y > (data->map_height * BLOCK_RES)
+			|| isnan(intercept.x) || isnan(intercept.y))
 		return (1);
-	}
-	printf("int y %f, int x %f\n", intercept.y, intercept.x);
 	if (data->map[(int)(intercept.y / BLOCK_RES)][(int)(intercept.x / BLOCK_RES)] == '1')
-	{
-		// printf("WALL: %d %d\n", (intercept.y / BLOCK_RES), (intercept.x / BLOCK_RES));
 		return (1);
-	}
 	return (0);
 }
 
 double find_hor_intercept(t_data *data, double angle)
 {
-	t_gridpos	hor_int;
-	double		vector_len;
-	// double		alpha;
-
-	
-	// if (angle > M_PI_2 && angle < M_PI)
-	// 	alpha = M_PI - angle;
-	// else if (angle > M_PI && angle < (M_PI + M_PI_2))
-	// 	alpha = angle - M_PI;
-	// else if (angle > (M_PI + M_PI_2) && angle < (M_PI * 2))
-	// 	alpha = (M_PI * 2) - angle;
-	// else
-	// 	alpha = angle;
-
+	t_gridpos	hor_int;	double		vector_len;
 
 	//First intercept
 	if (angle < M_PI)
@@ -59,8 +39,7 @@ double find_hor_intercept(t_data *data, double angle)
 	// hor_int.x = data->posx - sqrt(pow((fabs(data->posy - hor_int.y) * sin(alpha)), 2) - pow(fabs(data->posy - hor_int.y), 2));
 	hor_int.x = data->posx + ((data->posy - hor_int.y) / tan(angle));
 	vector_len = 0;
-	printf("hpos %f | %f	int %f | %f\n", data->posx, data->posy, hor_int.x, hor_int.y);
-
+	// printf("hpos %f | %f	int %f | %f\n", data->posx, data->posy, hor_int.x, hor_int.y);
 	while (!is_wall(data, hor_int))
 	{
 		if (angle < M_PI)
@@ -89,29 +68,13 @@ double find_vert_intercept(t_data *data, const double angle)
 {
 	t_gridpos	vert_int;
 	double		vector_len;
-	// double		alpha;
 
-	
-	// if (angle > M_PI_2 && angle < M_PI)
-	// 	alpha = M_PI - angle;
-	// else if (angle > M_PI && angle < (M_PI + M_PI_2))
-	// 	alpha = angle - M_PI;
-	// else if (angle > (M_PI + M_PI_2) && angle < (M_PI * 2))
-	// 	alpha = M_PI * 2 - angle;
-	// else
-	// 	alpha = angle;
-
-	//First intercept
 	if (angle > M_PI_2 && angle < 3 * M_PI_2)
 		vert_int.x = ((int)(data->posx / BLOCK_RES) * BLOCK_RES) - OFFSET;
 	else
 		vert_int.x = ((int)(data->posx / BLOCK_RES) * BLOCK_RES) + BLOCK_RES;
-	// printf("pa %f\n", fabs(data->posx - vert_int.x) * sin(alpha));
-	// vert_int.y = data->posy - sqrt(pow((fabs(data->posx - vert_int.x) * sin(alpha)), 2) - pow(fabs(data->posx - vert_int.x), 2));
 	vert_int.y = data->posy + ((data->posx - vert_int.x) * tan(angle));
-
 	vector_len = 0;
-	//repeat until wall or out of map
 	printf("vpos %f | %f	int %f | %f\n", data->posx, data->posy, vert_int.x, vert_int.y);
 	while (!is_wall(data, vert_int))
 	{

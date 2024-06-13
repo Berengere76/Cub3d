@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 14:24:39 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:47:14 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 
 # define WIN_W 640
 # define WIN_H 480
-# define BLOCK_RES 64
+# define BLOCK_RES 64 // height/width/depth of walls (and all other cubes)
 # define FOV_RAD 1.0472 // 60 degree FOV in radians
+# define DIS_PROJ (WIN_W / 2) / tan(FOV_RAD / 2) //distance to projection plan
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -65,7 +66,7 @@ typedef struct s_data
 	int				scaleh;
 	double			posx; //start position of the player
 	double			posy;
-	double			dir; //start direction of player's POV in radians
+	double			view_dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
 	double			angle;

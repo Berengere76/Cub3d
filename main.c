@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 14:25:21 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:47:33 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	printf("C colour: %d\n", data.ceiling);
 	printf("start position x: %f - %f\n", data.posx, data.posx / 64);
 	printf("start position y: %f - %f\n", data.posy, data.posy / 64);
-	printf("start direction rad: %f\n", data.dir);
+	printf("start direction rad: %f\n", data.view_dir);
 	int	i = 0;
 	while (data.map[i])
 	{

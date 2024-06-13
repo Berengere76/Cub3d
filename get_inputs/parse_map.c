@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 14:23:29 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:48:40 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	_save_start_pos(t_data *data, size_t i, size_t j)
 {
 	data->posx = (j * BLOCK_RES) + (BLOCK_RES / 2);
 	data->posy = (i * BLOCK_RES) + (BLOCK_RES / 2);
-	data->dir = _start_rad(data->map[i][j]);
+	data->view_dir = _start_rad(data->map[i][j]);
 }
 
 int	parse_map(t_data *data)
