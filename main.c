@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 18:19:09 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:25:21 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	data_init(t_data *data)
 	data->map = NULL;
 	data->ceiling = -1;
 	data->floor = -1;
-	data->width = WIN_W;
-	data->height = WIN_H;
+	data->win_width = WIN_W;
+	data->win_height = WIN_H;
 	data->posx = -1;
 	data->posy = -1;
 	data->planex = 0;
@@ -54,12 +54,11 @@ int	main(int argc, char **argv)
 	printf("SO_path: %s\n", data.walltexture.so_path);
 	printf("WE_path: %s\n", data.walltexture.we_path);
 	printf("EA_path: %s\n", data.walltexture.ea_path);
-	printf("F colour (14827520): %d\n", data.floor);
-	printf("C colour (14868480): %d\n", data.ceiling);
-	printf("start positionx: %f - %f\n", data.posx, data.posx / 64);
-	printf("start positiony: %f - %f\n", data.posy, data.posy / 64);
-	printf("start directionx: %f\n", data.dirx);
-	printf("start directiony: %f\n", data.diry);
+	printf("F colour: %d\n", data.floor);
+	printf("C colour: %d\n", data.ceiling);
+	printf("start position x: %f - %f\n", data.posx, data.posx / 64);
+	printf("start position y: %f - %f\n", data.posy, data.posy / 64);
+	printf("start direction rad: %f\n", data.dir);
 	int	i = 0;
 	while (data.map[i])
 	{
@@ -67,9 +66,14 @@ int	main(int argc, char **argv)
 		i++;
 	}
 /////////////////////////
+	// int	angle;
+
+	// angle = FOV_RAD / 2;
+	// while (angle < )
 
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	init_img(&data);
+	raycast(&data);
 	ft_put_pixel_to_background(&data);
 	ft_draw_minimap(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);

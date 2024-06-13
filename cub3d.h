@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 18:59:07 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:24:39 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@
 # include "minilibx/mlx42.h"
 # include "Libft/libft.h"
 # include <unistd.h>
+# include <math.h>
+# include <limits.h>
 # include <stdio.h> //TODO REMOVE (printf)
 
 # define MOVESPEED 4.0f
 
 /* ***************** */
-/*        Kiri       */
+/*      DEFINES      */
 /* ***************** */
 
 # define WIN_W 640
 # define WIN_H 480
 # define BLOCK_RES 64
+# define FOV_RAD 1.0472 // 60 degree FOV in radians
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -53,15 +56,16 @@ typedef struct walltexture
 typedef struct s_data
 {
 	void			*mlx;
-	int				width;
-	int				height;
+	int				win_width;
+	int				win_height;
+	int				map_length;
+	int				map_height;
 	int				max_len;
 	int				scalew;
 	int				scaleh;
 	double			posx; //start position of the player
 	double			posy;
-	double			dirx; //start direction of player's POV
-	double			diry;
+	double			dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
 	double			angle;
@@ -130,5 +134,12 @@ int		get_textures(char *line, t_data *data);
 int		ft_tablen(char **tab);
 bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
+
+/* FIND_INTERCEPT.C */
+double	find_hor_intercept(t_data *data, double angle);
+double	find_vert_intercept(t_data *data, double angle);
+
+/* RAYCAST.C */
+void	raycast(t_data *data);
 
 #endif

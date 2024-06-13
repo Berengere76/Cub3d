@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 12:13:54 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:26:27 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,12 @@ int	length_map(t_data *data)
 
 void	init_img(t_data *data)
 {
-	//now checks both the height and width of the map, and sets data->max_len
-	//(and therefore the scaling) to whichever is longest
-	int	map_length;
-	int map_height;
-
-	map_length = length_map(data);
-	map_height = ft_tablen(data->map);
-	if (map_length >= map_height)
-		data->max_len = map_length;
+	data->map_length = length_map(data);
+	data->map_height = ft_tablen(data->map);
+	if (data->map_length >= data->map_height)
+		data->max_len = data->map_length;
 	else
-		data->max_len = map_height;
+		data->max_len = data->map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
 	//added another scaling factor to .h so height and width can be different
 	data->scalew = WIN_W / (data->max_len * (WIN_W / 125));
