@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:27:34 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/10 19:00:20 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/13 17:30:05 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	move_frontback(t_data *data, int dir)
 	double	sin_a;
 	double	cos_a;
 
-	sin_a = sin(data->angle) * MOVESPEED * dir;
-	cos_a = cos(data->angle) * MOVESPEED * dir;
+	sin_a = sin(data->view_dir) * MOVESPEED * dir;
+	cos_a = cos(data->view_dir) * MOVESPEED * dir;
 	data->posy += sin_a;
 	data->posx += cos_a;
 }
@@ -29,14 +29,14 @@ void	move_latteral(t_data *data, int dir)
 	double	sin_a;
 	double	cos_a;
 
-	sin_a = sin(data->angle) * MOVESPEED * dir;
-	cos_a = cos(data->angle) * MOVESPEED * dir;
+	sin_a = sin(data->view_dir) * MOVESPEED * dir;
+	cos_a = cos(data->view_dir) * MOVESPEED * dir;
 	data->posy += cos_a;
 	data->posx += sin_a;
 }
 void	rotate(t_data *data, int dir)
 {
-	data->angle += 0.05 * dir;
+	data->view_dir += 0.05 * dir;
 }
 
 void	ft_hook(void *param)
@@ -59,5 +59,6 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	ft_put_pixel_to_background(data);
+	raycast(data);
 	ft_draw_minimap(data);
 }

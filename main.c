@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 14:47:33 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:50:36 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ int	main(int argc, char **argv)
 	// angle = FOV_RAD / 2;
 	// while (angle < )
 
-	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
+	data.mlx = mlx_init(WIN_W, WIN_H, "Cub3D", false);
 	init_img(&data);
-	raycast(&data);
 	ft_put_pixel_to_background(&data);
 	ft_draw_minimap(&data);
+	// raycast(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);
