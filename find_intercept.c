@@ -6,15 +6,15 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:08:28 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/12 12:34:55 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:15:04 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#define OFFSET 1 //TODO - KEEP?
+#define OFFSET 0.0000001 //TODO - KEEP?
 
-//axis == 0 for horzontal, 1 for vertical
+//axis == 0 for horizontal, 1 for vertical
 bool	is_wall(t_data *data, t_gridpos intercept)
 {
 	if (intercept.x > (data->map_length * BLOCK_RES)
@@ -38,19 +38,31 @@ double find_hor_intercept(t_data *data, double angle)
 {
 	t_gridpos	hor_int;
 	double		vector_len;
+	// double		alpha;
+
+	
+	// if (angle > M_PI_2 && angle < M_PI)
+	// 	alpha = M_PI - angle;
+	// else if (angle > M_PI && angle < (M_PI + M_PI_2))
+	// 	alpha = angle - M_PI;
+	// else if (angle > (M_PI + M_PI_2) && angle < (M_PI * 2))
+	// 	alpha = (M_PI * 2) - angle;
+	// else
+	// 	alpha = angle;
+
 
 	//First intercept
 	if (angle < M_PI)
 		hor_int.y = (int)(data->posy / BLOCK_RES) * BLOCK_RES - OFFSET;
 	else//if vector points downwards then just need to add an extra grid size
 		hor_int.y = (int)(data->posy / BLOCK_RES) * BLOCK_RES + BLOCK_RES;
-	hor_int.x = data->posx - sqrt(pow((fabs(data->posy - hor_int.y) * sin(angle)), 2) - pow(fabs(data->posy - hor_int.y), 2));
-	// hor_int.x = data->posx + ((data->posy - hor_int.y) * tan(angle));
+	// hor_int.x = data->posx - sqrt(pow((fabs(data->posy - hor_int.y) * sin(alpha)), 2) - pow(fabs(data->posy - hor_int.y), 2));
+	hor_int.x = data->posx + ((data->posy - hor_int.y) / tan(angle));
 	vector_len = 0;
+	printf("hpos %f | %f	int %f | %f\n", data->posx, data->posy, hor_int.x, hor_int.y);
 
 	while (!is_wall(data, hor_int))
 	{
-		printf("-pos %f | %f	int %f | %f\n", data->posx, data->posy, hor_int.x, hor_int.y);
 		if (angle < M_PI)
 		{
 			hor_int.y -= BLOCK_RES;
@@ -62,8 +74,11 @@ double find_hor_intercept(t_data *data, double angle)
 			hor_int.x -= BLOCK_RES / tan(angle);
 		}
 	}
-	if (isnan(hor_int.x) || isnan(hor_int.y))
-		vector_len = (data->map_height + data->map_length) * BLOCK_RES;
+	if (hor_int.x > (data->map_length * BLOCK_RES)
+		|| hor_int.x < 0 || hor_int.y < 0
+		|| hor_int.y > (data->map_height * BLOCK_RES)
+		|| isnan(hor_int.x) || isnan(hor_int.y))
+		vector_len = INFINITY;
 	else
 		vector_len = sqrt(pow(fabs(data->posx - hor_int.x), 2) + pow(fabs(data->posy - hor_int.y), 2));
 	printf("%f\n", vector_len);
@@ -74,14 +89,26 @@ double find_vert_intercept(t_data *data, const double angle)
 {
 	t_gridpos	vert_int;
 	double		vector_len;
+	// double		alpha;
+
 	
+	// if (angle > M_PI_2 && angle < M_PI)
+	// 	alpha = M_PI - angle;
+	// else if (angle > M_PI && angle < (M_PI + M_PI_2))
+	// 	alpha = angle - M_PI;
+	// else if (angle > (M_PI + M_PI_2) && angle < (M_PI * 2))
+	// 	alpha = M_PI * 2 - angle;
+	// else
+	// 	alpha = angle;
+
 	//First intercept
 	if (angle > M_PI_2 && angle < 3 * M_PI_2)
 		vert_int.x = ((int)(data->posx / BLOCK_RES) * BLOCK_RES) - OFFSET;
 	else
 		vert_int.x = ((int)(data->posx / BLOCK_RES) * BLOCK_RES) + BLOCK_RES;
-	vert_int.y = data->posy - sqrt(pow((fabs(data->posx - vert_int.x) * sin(angle)), 2) - pow(fabs(data->posx - vert_int.x), 2));
-	// vert_int.y = data->posy + ((data->posx - vert_int.x) * tan(angle));
+	// printf("pa %f\n", fabs(data->posx - vert_int.x) * sin(alpha));
+	// vert_int.y = data->posy - sqrt(pow((fabs(data->posx - vert_int.x) * sin(alpha)), 2) - pow(fabs(data->posx - vert_int.x), 2));
+	vert_int.y = data->posy + ((data->posx - vert_int.x) * tan(angle));
 
 	vector_len = 0;
 	//repeat until wall or out of map
@@ -91,17 +118,21 @@ double find_vert_intercept(t_data *data, const double angle)
 		if (angle > M_PI_2 && angle < 3 * M_PI_2)
 		{
 			vert_int.x -= BLOCK_RES;
-			vert_int.y += BLOCK_RES / tan(angle);
+			vert_int.y += BLOCK_RES * tan(angle);
 		}
 		else
 		{
 			vert_int.x += BLOCK_RES;
-			vert_int.y -= BLOCK_RES / tan(angle);
+			vert_int.y -= BLOCK_RES * tan(angle);
 		}
 	}
-	if (isnan(vert_int.x) || isnan(vert_int.y))
-		vector_len = (data->map_height + data->map_length) * BLOCK_RES;
-	vector_len = sqrt(pow(fabs(data->posx - vert_int.x), 2) + pow(fabs(data->posy - vert_int.y), 2));
+	if (vert_int.x > (data->map_length * BLOCK_RES)
+		|| vert_int.x < 0 || vert_int.y < 0
+		|| vert_int.y > (data->map_height * BLOCK_RES)
+		|| isnan(vert_int.x) || isnan(vert_int.y))
+		vector_len = INFINITY;
+	else
+		vector_len = sqrt(pow(fabs(data->posx - vert_int.x), 2) + pow(fabs(data->posy - vert_int.y), 2));
 	return (vector_len);
 }
 

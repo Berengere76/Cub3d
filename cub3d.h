@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/12 12:01:06 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 10:40:53 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,6 @@ double	find_hor_intercept(t_data *data, double angle);
 double	find_vert_intercept(t_data *data, double angle);
 
 /* RAYCAST.C */
-void	shortest_ray(t_data *data);
+void	raycast(t_data *data);
 
 #endif

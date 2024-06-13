@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/12 11:11:31 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 10:40:45 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	init_img(&data);
-	shortest_ray(&data);
+	raycast(&data);
 	// ft_put_pixel_to_background(&data);
 	// ft_draw_minimap(&data);
 	// mlx_image_to_window(data.mlx, data.img, 0, 0);
