@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_intercept.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:08:28 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 15:05:10 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:35:55 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ double find_hor_intercept(t_data *data, double angle)
 		vector_len = INFINITY;
 	else
 		vector_len = sqrt(pow(fabs(data->posx - hor_int.x), 2) + pow(fabs(data->posy - hor_int.y), 2));
-	printf("%f\n", vector_len);
+	// printf("%f\n", vector_len);
 	return (vector_len);
 }
 
@@ -75,7 +75,7 @@ double find_vert_intercept(t_data *data, const double angle)
 		vert_int.x = ((int)(data->posx / BLOCK_RES) * BLOCK_RES) + BLOCK_RES;
 	vert_int.y = data->posy + ((data->posx - vert_int.x) * tan(angle));
 	vector_len = 0;
-	printf("vpos %f | %f	int %f | %f\n", data->posx, data->posy, vert_int.x, vert_int.y);
+	// printf("vpos %f | %f	int %f | %f\n", data->posx, data->posy, vert_int.x, vert_int.y);
 	while (!is_wall(data, vert_int))
 	{
 		if (angle > M_PI_2 && angle < 3 * M_PI_2)

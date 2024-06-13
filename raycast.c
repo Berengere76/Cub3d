@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 15:07:44 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:25:07 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	raycast(t_data *data)
 	{
 		norm_angle(ray_angle);
 		ray_length = ray_len(data, ray_angle);
+		ft_draw_wall(data, ray_length, i);
+		// mlx_put_pixel(data->img, i, 200, ft_pixel(255, 255, 255, 255));
 		// call function to calculate wall height based on distance and write to image
 		ray_angle += FOV_RAD / WIN_W;
 		i++;
