@@ -6,18 +6,18 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 14:47:33 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:26:58 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minilibx/mlx42.h"
 
-void	error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// void	error(void)
+// {
+// 	puts(mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
 
 int	data_init(t_data *data)
 {
@@ -66,10 +66,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 /////////////////////////
-	// int	angle;
-
-	// angle = FOV_RAD / 2;
-	// while (angle < )
 
 	data.mlx = mlx_init(WIN_W, WIN_H, "Hello world!", false);
 	init_img(&data);
@@ -80,5 +76,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	ft_free(&data);
 	return (0);
 }
