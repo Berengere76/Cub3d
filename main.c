@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 12:40:30 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:41:57 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minilibx/mlx42.h"
 
-void	error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// void	error(void)
+// {
+// 	puts(mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
 
 int	data_init(t_data *data)
 {
@@ -76,5 +76,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	ft_free(&data);
 	return (0);
 }

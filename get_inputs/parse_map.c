@@ -6,20 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 14:48:40 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:25:04 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// static int	_start_dir(char dir, char axis)
-// {
-// 	if ((dir == 'N' && axis == 'Y') || (dir == 'E' && axis == 'X'))
-// 		return (1);
-// 	if ((dir == 'S' && axis == 'Y') || (dir == 'W' && axis == 'X'))
-// 		return (-1);
-// 	return (0);
-// }
 
 double	_start_rad(char dir)
 {

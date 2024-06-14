@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/13 18:38:31 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:42:16 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	norm_angle(double angle)
 {
 	if (angle > M_PI * 2)
-		angle -=  M_PI * 2;
+		angle -= M_PI * 2;
 	else if (angle <= 0)
 		angle += M_PI * 2;
 	return (angle);
@@ -23,14 +23,14 @@ double	norm_angle(double angle)
 
 double	ray_len(t_data *data, double ray_angle)
 {
-		double	hor;
-		double	vert;
+	double	hor;
+	double	vert;
 
-		hor = find_hor_intercept(data, ray_angle);
-		vert = find_vert_intercept(data, ray_angle);
-		if (hor <= vert)
-			return (hor * cos(fabs(data->view_dir - ray_angle)));
-		return (vert * cos(fabs(data->view_dir - ray_angle)));
+	hor = find_hor_intercept(data, ray_angle);
+	vert = find_vert_intercept(data, ray_angle);
+	if (hor <= vert)
+		return (hor * cos(fabs(data->view_dir - ray_angle)));
+	return (vert * cos(fabs(data->view_dir - ray_angle)));
 }
 
 void	raycast(t_data *data)
@@ -50,5 +50,5 @@ void	raycast(t_data *data)
 		ray_angle += FOV_RAD / WIN_W;
 		i++;
 	}
-	return;
+	return ;
 }
