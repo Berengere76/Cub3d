@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/14 12:29:07 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:46:45 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ int	read_cub(int fd, t_data *data)
 		}
 		free(line);
 	}
+	if (is_not_last(data))
+		return (1);
 	if (!data->map)
-		return (ft_errorfree("Input", "incomplete .cub file\n", data));
+		return (ft_errorfree("Input", "incomplete .cub file (no map)\n", data));
 	return (0);
 }
 
