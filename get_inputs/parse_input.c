@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 14:33:54 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:29:07 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	read_cub(int fd, t_data *data)
 		}
 		free(line);
 	}
+	if (!data->map)
+		return (ft_errorfree("Input", "incomplete .cub file\n", data));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 13:42:20 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:38:40 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int	ft_errorfree(char *type, char *message, t_data *data)
 	return (1);
 }
 
-// int ft_error(char *type, char *message)
-// {
-// 	write (2, "Error\n", 6);
-// 	write (2, type, ft_strlen(type));
-// 	write (2, " error: ", 8);
-// 	write (2, message, ft_strlen(message));
-// 	return (1);
-// }
+int ft_error(char *type, char *message)
+{
+	write (2, "Error\n", 6);
+	write (2, type, ft_strlen(type));
+	write (2, " error: ", 8);
+	write (2, message, ft_strlen(message));
+	return (1);
+}

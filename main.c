@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 17:50:36 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:40:30 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	main(int argc, char **argv)
 {
 
 	t_data			data;
-	//colour screen background here https://github.com/keuhdall/images_example
+
 	if (argc != 2)
-		return (ft_errorfree("Input", "wrong number of input arguments\n", &data));
+		return (ft_error("Input", "wrong number of input arguments\n"));
 	data_init(&data);
 	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data))
 		return (1);
@@ -66,10 +66,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 /////////////////////////
-	// int	angle;
-
-	// angle = FOV_RAD / 2;
-	// while (angle < )
 
 	data.mlx = mlx_init(WIN_W, WIN_H, "Cub3D", false);
 	init_img(&data);

@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 17:28:50 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:39:06 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
-void		ft_draw_wall(t_data *data, double ray_lenght, int i);
+void		ft_draw_wall(t_data *data, double ray_length, int i);
 
 /* MOVEMENTS.C */
 void		move_frontback(t_data *data, int dir);
@@ -114,7 +114,7 @@ int		map_is_open(t_data *data);
 /* ERROR.C */
 void	ft_free(t_data *data);
 int		ft_errorfree(char *type, char *message, t_data *data);
-// int		ft_error(char *type, char *message);
+int		ft_error(char *type, char *message);
 
 /* PARSE_MAP.C */
 int		parse_map(t_data *data);
@@ -145,6 +145,7 @@ double	find_hor_intercept(t_data *data, double angle);
 double	find_vert_intercept(t_data *data, double angle);
 
 /* RAYCAST.C */
+double	norm_angle(double angle);
 void	raycast(t_data *data);
 
 #endif

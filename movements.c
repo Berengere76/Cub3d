@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:27:34 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 17:30:05 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 12:15:35 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	move_frontback(t_data *data, int dir)
 	cos_a = cos(data->view_dir) * MOVESPEED * dir;
 	data->posy += sin_a;
 	data->posx += cos_a;
+	ft_put_pixel_to_background(data);
+	raycast(data);
+	ft_draw_minimap(data);
 }
 
 void	move_latteral(t_data *data, int dir)
@@ -33,10 +36,17 @@ void	move_latteral(t_data *data, int dir)
 	cos_a = cos(data->view_dir) * MOVESPEED * dir;
 	data->posy += cos_a;
 	data->posx += sin_a;
+	ft_put_pixel_to_background(data);
+	raycast(data);
+	ft_draw_minimap(data);
 }
 void	rotate(t_data *data, int dir)
 {
 	data->view_dir += 0.05 * dir;
+	data->view_dir = norm_angle(data->view_dir);
+	ft_put_pixel_to_background(data);
+	raycast(data);
+	ft_draw_minimap(data);
 }
 
 void	ft_hook(void *param)
@@ -58,7 +68,6 @@ void	ft_hook(void *param)
 		rotate(data, 1);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	ft_put_pixel_to_background(data);
-	raycast(data);
-	ft_draw_minimap(data);
+
+	// printf()
 }
