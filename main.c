@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 13:41:57 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:55:08 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	data_init(t_data *data)
 	data->posy = -1;
 	data->planex = 0;
 	data->planey = 0.6;
-	data->angle = 0;
 	return (0);
 }
 
@@ -70,8 +69,9 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init(WIN_W, WIN_H, "Cub3D", false);
 	init_img(&data);
 	ft_put_pixel_to_background(&data);
+	
+	raycast(&data);
 	ft_draw_minimap(&data);
-	// raycast(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);

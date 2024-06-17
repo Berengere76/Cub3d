@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 12:39:06 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:54:45 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_data
 	double			view_dir; //start direction of player's POV in radians
 	double			planex; //camera plane
 	double			planey;
-	double			angle;
 	t_walltexture	walltexture;
 	char			**map;
 	int				floor;
@@ -97,7 +96,7 @@ void		ft_draw_wall(t_data *data, double ray_length, int i);
 
 /* MOVEMENTS.C */
 void		move_frontback(t_data *data, int dir);
-void		move_latteral(t_data *data, int dir);
+void		move_lateral(t_data *data, int dir);
 void		rotate(t_data *data, int dir);
 void		ft_hook(void *param);
 
@@ -141,6 +140,7 @@ bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
 
 /* FIND_INTERCEPT.C */
+bool	is_wall(t_data *data, t_gridpos intercept);
 double	find_hor_intercept(t_data *data, double angle);
 double	find_vert_intercept(t_data *data, double angle);
 
