@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 14:28:43 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:00:05 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <math.h>
 # include <limits.h>
 # include <stdio.h> //TODO REMOVE (printf)
-
 
 /* ***************** */
 /*      DEFINES      */
@@ -85,17 +84,22 @@ typedef struct s_gridpos
 
 typedef struct s_drawwall
 {
-	char	walldirection;
-	double	raylength;
+	char		walldirection;
+	double		raylength;
+	t_gridpos	intercept;
 }	t_drawwall;
 
 /* TEXTURE.C */
-int32_t   	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		init_img(t_data *data);
 void		ft_put_pixel_to_background(t_data *data);
 
 /* MINIMAP.C */
 void		ft_draw_square(t_data *data, int x, int y, int width);
+// added a functionality to avoid the norm limitation of 4 variables -
+// if you want to draw a square, set size to the height/width you want.
+// if size == 0 then it will take the height and width from data->scalew/h
+// to draw minimap square sizes
 void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
@@ -103,8 +107,6 @@ void		load_png(t_data *data);
 void		ft_draw_wall(t_data *data, double ray_length, int i);
 
 /* MOVEMENTS.C */
-// void		move_frontback(t_data *data, int dir);
-// void		move_lateral(t_data *data, int dir);
 void		move_front(t_data *data);
 void		move_back(t_data *data);
 void		move_left(t_data *data);
@@ -113,51 +115,52 @@ void		rotate(t_data *data, int dir);
 void		ft_hook(void *param);
 
 /* PARSE_INPUT.C */
-int		open_cub(char *argv, t_data *data);
+int			open_cub(char *argv, t_data *data);
 
 /* CHECK_MAP.C */
-bool	is_spc(char c);
-bool	is_direc(char c);
-bool	is_valid(char c);
-bool	check_0(char **map, size_t row, size_t col);
-int		map_is_open(t_data *data);
+bool		is_spc(char c);
+bool		is_direc(char c);
+bool		is_valid(char c);
+bool		check_0(char **map, size_t row, size_t col);
+int			map_is_open(t_data *data);
 
 /* ERROR.C */
-void	ft_free(t_data *data);
-int		ft_errorfree(char *type, char *message, t_data *data);
-int		ft_error(char *type, char *message);
+void		ft_free(t_data *data);
+int			ft_errorfree(char *type, char *message, t_data *data);
+int			ft_error(char *type, char *message);
 
 /* PARSE_MAP.C */
-int		parse_map(t_data *data);
+int			parse_map(t_data *data);
 
 /* MAIN.C */
 // void	error(void);
 
 /* GNL.C */
-char	*gnl(int fd);
+char		*gnl(int fd);
 
 /* GNL_UTILS.C */
-int		ft_findnl(char *buffer);
-char	*ft_strcpy(char *str1, char *str2);
+int			ft_findnl(char *buffer);
+char		*ft_strcpy(char *str1, char *str2);
 
 /* GET_COLOURS.C */
-int		get_colours(char *line, t_data *data);
+int			get_colours(char *line, t_data *data);
 
 /* GET_TEXTURES.C */
-int		get_textures(char *line, t_data *data);
+int			get_textures(char *line, t_data *data);
 
 /* GET_MAP.C */
-int		ft_tablen(char **tab);
-bool	is_not_last(t_data *data);
-int		get_map(char *line, t_data *data);
+int			ft_tablen(char **tab);
+bool		is_not_last(t_data *data);
+int			get_map(char *line, t_data *data);
 
 /* FIND_INTERCEPT.C */
-bool		is_wall(t_data *data, t_gridpos intercept);
 t_drawwall	find_hor_intercept(t_data *data, double angle);
 t_drawwall	find_vert_intercept(t_data *data, double angle);
 
 /* RAYCAST.C */
-double	norm_angle(double angle);
-void	raycast(t_data *data);
+double		norm_angle(double angle);
+bool		is_off_map(t_data *data, t_gridpos intercept);
+bool		is_wall(t_data *data, t_gridpos intercept);
+void		raycast(t_data *data);
 
 #endif

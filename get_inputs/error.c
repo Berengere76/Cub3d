@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/14 12:38:40 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/17 14:47:35 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_errorfree(char *type, char *message, t_data *data)
 	return (1);
 }
 
-int ft_error(char *type, char *message)
+int	ft_error(char *type, char *message)
 {
 	write (2, "Error\n", 6);
 	write (2, type, ft_strlen(type));

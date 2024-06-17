@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/17 14:30:17 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:46:38 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@ double	norm_angle(double angle)
 	else if (angle < 0)
 		angle += (M_PI * 2);
 	return (angle);
+}
+
+bool	is_off_map(t_data *data, t_gridpos intercept)
+{
+	if (intercept.x > (data->map_length * BLOCK_RES)
+		|| intercept.x < 0 || intercept.y < 0
+		|| intercept.y >= (data->map_height * BLOCK_RES)
+		|| isnan(intercept.x) || isnan(intercept.y))
+		return (1);
+	return (0);
+}
+
+bool	is_wall(t_data *data, t_gridpos intercept)
+{
+	if (data->map[(int)(intercept.y / BLOCK_RES)]
+		[(int)(intercept.x / BLOCK_RES)] == '1')
+		return (1);
+	return (0);
 }
 
 t_drawwall	ray_len(t_data *data, double ray_angle)
