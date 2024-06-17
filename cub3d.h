@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 12:55:18 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:56:41 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,16 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
+void		load_png(t_data *data);
 void		ft_draw_wall(t_data *data, double ray_length, int i);
 
 /* MOVEMENTS.C */
-void		move_frontback(t_data *data, int dir);
-void		move_lateral(t_data *data, int dir);
+// void		move_frontback(t_data *data, int dir);
+// void		move_lateral(t_data *data, int dir);
+void		move_front(t_data *data);
+void		move_back(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
 void		rotate(t_data *data, int dir);
 void		ft_hook(void *param);
 
@@ -120,7 +125,7 @@ int		ft_error(char *type, char *message);
 int		parse_map(t_data *data);
 
 /* MAIN.C */
-void	error(void);
+// void	error(void);
 
 /* GNL.C */
 char	*gnl(int fd);
