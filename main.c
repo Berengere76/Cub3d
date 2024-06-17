@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 14:55:08 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/17 13:11:07 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,26 @@ int	data_init(t_data *data)
 	return (0);
 }
 
+void	quit_game(t_data *data)
+{
+	// mlx_delete_texture(data->walltexture.ea_walltexture);
+	// mlx_delete_texture(data->walltexture.no_walltexture);
+	// mlx_delete_texture(data->walltexture.so_walltexture);
+	// mlx_delete_texture(data->walltexture.we_walltexture);
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
+	ft_free(data);
+}
+
 int	main(int argc, char **argv)
 {
-
-	t_data			data;
+	t_data	data;
 
 	if (argc != 2)
 		return (ft_error("Input", "wrong number of input arguments\n"));
 	data_init(&data);
 	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data))
 		return (1);
-
 //PRINT INPUT VARIABLES
 	printf("NO_path: %s\n", data.walltexture.no_path);
 	printf("SO_path: %s\n", data.walltexture.so_path);
@@ -65,17 +74,15 @@ int	main(int argc, char **argv)
 		i++;
 	}
 /////////////////////////
-
 	data.mlx = mlx_init(WIN_W, WIN_H, "Cub3D", false);
 	init_img(&data);
+	load_png(&data);
 	ft_put_pixel_to_background(&data);
-	
 	raycast(&data);
 	ft_draw_minimap(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
-	ft_free(&data);
+	quit_game(&data);
 	return (0);
 }

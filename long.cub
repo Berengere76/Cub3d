@@ -1,10 +1,7 @@
-	  NO ./path_to_the_north_texture some other stuff
-
-SO ./path_to_the_south_texture lfkjdhlkjd klj lkj 
-    WE     ./path_to_the_west_texture
-
-
-EA ./path_to_the_east_texture
+NO ./assets/decor.png
+SO ./assets/decor.png
+WE ./assets/decor.png
+EA ./assets/decor.png
 
 F 26,32,28 slfkgsfljk
 

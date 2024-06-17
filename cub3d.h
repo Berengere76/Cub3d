@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 14:54:45 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/17 11:49:29 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,16 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
+void		load_png(t_data *data);
 void		ft_draw_wall(t_data *data, double ray_length, int i);
 
 /* MOVEMENTS.C */
-void		move_frontback(t_data *data, int dir);
-void		move_lateral(t_data *data, int dir);
+// void		move_frontback(t_data *data, int dir);
+// void		move_lateral(t_data *data, int dir);
+void		move_front(t_data *data);
+void		move_back(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
 void		rotate(t_data *data, int dir);
 void		ft_hook(void *param);
 
@@ -119,7 +124,7 @@ int		ft_error(char *type, char *message);
 int		parse_map(t_data *data);
 
 /* MAIN.C */
-void	error(void);
+// void	error(void);
 
 /* GNL.C */
 char	*gnl(int fd);
