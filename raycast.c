@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/17 14:46:38 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:07:34 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	raycast(t_data *data)
 	{
 		ray_angle = norm_angle(ray_angle);
 		ray_data = ray_len(data, ray_angle);
-		ft_draw_wall(data, ray_data.raylength, i);
+		ft_draw_wall(data, ray_data, i);
 		ray_angle -= FOV_RAD / WIN_W;
 		i++;
 	}

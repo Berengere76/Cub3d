@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 15:00:05 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:07:26 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
 void		load_png(t_data *data);
-void		ft_draw_wall(t_data *data, double ray_length, int i);
+void		ft_draw_wall(t_data *data, t_drawwall drawwall, int i);
 
 /* MOVEMENTS.C */
 void		move_front(t_data *data);
