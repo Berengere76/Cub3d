@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:08:28 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/14 13:41:58 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:21:13 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 bool	is_off_map(t_data *data, t_gridpos intercept)
 {
-	if (intercept.x > (data->map_length * BLOCK_RES)
+	if (intercept.x >= (data->map_length * BLOCK_RES)
 		|| intercept.x < 0 || intercept.y < 0
-		|| intercept.y > (data->map_height * BLOCK_RES)
+		|| intercept.y >= (data->map_height * BLOCK_RES)
 		|| isnan(intercept.x) || isnan(intercept.y))
 		return (1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/14 14:54:45 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/17 12:55:18 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <limits.h>
 # include <stdio.h> //TODO REMOVE (printf)
 
-# define MOVESPEED 4.0f
 
 /* ***************** */
 /*      DEFINES      */
@@ -37,6 +36,8 @@
 # define BLOCK_RES 64 // height/width/depth of walls (and all other cubes)
 # define FOV_RAD 1.0472 // 60 degree FOV in radians
 # define DIS_PROJ (WIN_W / 2) / tan(FOV_RAD / 2) //distance to projection plan
+# define MOVESPEED 1.0f
+# define TURNSPEED 0.02f
 
 /* ***************** */
 /*     STRUCTURES    */
