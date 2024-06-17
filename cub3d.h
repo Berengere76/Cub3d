@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 14:28:43 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:39:20 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
 void		load_png(t_data *data);
-void		ft_draw_wall(t_data *data, double ray_length, int i);
+void		ft_draw_wall(t_data *data, t_drawwall drawwall, int i);
 
 /* MOVEMENTS.C */
 // void		move_frontback(t_data *data, int dir);
