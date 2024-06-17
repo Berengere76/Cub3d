@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 13:56:41 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:28:43 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ typedef struct s_gridpos
 	double		y;
 }	t_gridpos;
 
+typedef struct s_drawwall
+{
+	char	walldirection;
+	double	raylength;
+}	t_drawwall;
+
 /* TEXTURE.C */
 int32_t   	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		init_img(t_data *data);
@@ -146,9 +152,9 @@ bool	is_not_last(t_data *data);
 int		get_map(char *line, t_data *data);
 
 /* FIND_INTERCEPT.C */
-bool	is_wall(t_data *data, t_gridpos intercept);
-double	find_hor_intercept(t_data *data, double angle);
-double	find_vert_intercept(t_data *data, double angle);
+bool		is_wall(t_data *data, t_gridpos intercept);
+t_drawwall	find_hor_intercept(t_data *data, double angle);
+t_drawwall	find_vert_intercept(t_data *data, double angle);
 
 /* RAYCAST.C */
 double	norm_angle(double angle);

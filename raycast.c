@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/17 12:48:23 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:30:17 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,38 @@ double	norm_angle(double angle)
 	return (angle);
 }
 
-double	ray_len(t_data *data, double ray_angle)
+t_drawwall	ray_len(t_data *data, double ray_angle)
 {
-	double	hor;
-	double	vert;
+	t_drawwall	hor;
+	t_drawwall	vert;
 
 	hor = find_hor_intercept(data, ray_angle);
 	vert = find_vert_intercept(data, ray_angle);
-	if (hor <= vert)
-		return (hor * cos(fabs(data->view_dir - ray_angle)));
-	return (vert * cos(fabs(data->view_dir - ray_angle)));
+	if (hor.raylength <= vert.raylength)
+	{
+		hor.raylength *= cos(fabs(data->view_dir - ray_angle));
+		return (hor);
+	}
+	else
+	{
+		vert.raylength *= cos(fabs(data->view_dir - ray_angle));
+		return (vert);
+	}
 }
 
 void	raycast(t_data *data)
 {
-	int		i;
-	double	ray_angle;
-	double	ray_length;
+	int			i;
+	double		ray_angle;
+	t_drawwall	ray_data;
 
 	i = 0;
 	ray_angle = data->view_dir + (FOV_RAD / 2);
 	while (i < WIN_W)
 	{
 		ray_angle = norm_angle(ray_angle);
-		ray_length = ray_len(data, ray_angle);
-		ft_draw_wall(data, ray_length, i);
+		ray_data = ray_len(data, ray_angle);
+		ft_draw_wall(data, ray_data.raylength, i);
 		ray_angle -= FOV_RAD / WIN_W;
 		i++;
 	}
