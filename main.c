@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 13:11:07 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/18 14:26:57 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	data_init(t_data *data)
 
 void	quit_game(t_data *data)
 {
-	// mlx_delete_texture(data->walltexture.ea_walltexture);
-	// mlx_delete_texture(data->walltexture.no_walltexture);
-	// mlx_delete_texture(data->walltexture.so_walltexture);
-	// mlx_delete_texture(data->walltexture.we_walltexture);
+	mlx_delete_texture(data->walltexture.ea_walltexture);
+	mlx_delete_texture(data->walltexture.no_walltexture);
+	mlx_delete_texture(data->walltexture.so_walltexture);
+	mlx_delete_texture(data->walltexture.we_walltexture);
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
 	ft_free(data);

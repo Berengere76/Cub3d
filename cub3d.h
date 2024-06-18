@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 14:03:02 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/18 14:28:06 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,5 +170,7 @@ double		norm_angle(double angle);
 bool		is_off_map(t_data *data, t_gridpos intercept);
 bool		is_wall(t_data *data, t_gridpos intercept);
 void		raycast(t_data *data);
+
+void		quit_game(t_data *data);
 
 #endif
