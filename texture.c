@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/13 14:26:27 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:50:40 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	init_img(t_data *data)
 	else
 		data->max_len = data->map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	//added another scaling factor to .h so height and width can be different
 	data->scalew = WIN_W / (data->max_len * (WIN_W / 125));
 	data->scaleh = WIN_H / (data->max_len * (WIN_H / 125));
 }

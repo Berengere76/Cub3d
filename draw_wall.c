@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 16:24:18 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:48:52 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 	double			proj_height;
 	int				start;
 	t_gridpos		tex;
-	double		scale;
+	double			scale;
 	mlx_texture_t	*texture;
 
-	proj_height = (DIS_PROJ * BLOCK_RES) / drawwall.raylength;
+	proj_height = (((WIN_W / 2) / tan(FOV_RAD / 2)) * BLOCK_RES)
+		/ drawwall.raylength;
 	start = (WIN_H / 2) - (proj_height / 2);
 	if (start < 0)
 		start = 0;

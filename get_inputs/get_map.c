@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 18:30:11 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 13:27:50 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:54:56 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**ft_realloc(char **tab)
 {
 	size_t		i;
 	size_t		len;
-	char	**output;
+	char		**output;
 
 	i = -1;
 	len = ft_tablen(tab);

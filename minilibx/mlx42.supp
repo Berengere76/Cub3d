@@ -46,3 +46,17 @@
 	...
 	fun:_dl_open
 }
+
+{
+	<MLX42>
+	Memcheck:Leak
+	...
+	fun:realloc
+}
+
+{
+	<MLX42>
+	Memcheck:Leak
+	...
+	fun:calloc
+}

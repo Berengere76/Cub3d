@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:38:13 by blebas            #+#    #+#             */
-/*   Updated: 2023/11/13 16:51:36 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/18 16:54:24 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_strjoin_gnl(char *stash, char *buff)
 	}
 	if (!stash || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen_gnl(stash) + ft_strlen_gnl(buff)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen_gnl(stash) + ft_strlen_gnl(buff))
+				+ 1));
 	if (str == NULL)
 		return (NULL);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 16:24:06 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:52:59 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define WIN_H 480
 # define BLOCK_RES 200 // height/width/depth of walls (and all other cubes)
 # define FOV_RAD 1.0472 // 60 degree FOV in radians
-# define DIS_PROJ (WIN_W / 2) / tan(FOV_RAD / 2) //distance to projection plan
 # define MOVESPEED 2.0f
 # define TURNSPEED 0.02f
 
@@ -56,10 +55,10 @@ typedef struct walltexture
 
 typedef struct s_colours
 {
-	uint8_t r;
-	uint8_t g;
-	uint8_t b;
-	uint8_t a;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
 }	t_colours;
 
 typedef struct s_data
@@ -75,8 +74,6 @@ typedef struct s_data
 	double			posx; //start position of the player
 	double			posy;
 	double			view_dir; //start direction of player's POV in radians
-	double			planex; //camera plane
-	double			planey;
 	t_walltexture	walltexture;
 	char			**map;
 	int				floor;
@@ -141,7 +138,8 @@ int			ft_error(char *type, char *message);
 int			parse_map(t_data *data);
 
 /* MAIN.C */
-// void	error(void);
+void		ft_hook(void *param);
+void		check_and_move(t_data *data, t_gridpos check_wall);
 
 /* GNL.C */
 char		*gnl(int fd);
