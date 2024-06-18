@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 15:07:26 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:57:29 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 
 # define WIN_W 640
 # define WIN_H 480
-# define BLOCK_RES 64 // height/width/depth of walls (and all other cubes)
+# define BLOCK_RES 200 // height/width/depth of walls (and all other cubes)
 # define FOV_RAD 1.0472 // 60 degree FOV in radians
 # define DIS_PROJ (WIN_W / 2) / tan(FOV_RAD / 2) //distance to projection plan
-# define MOVESPEED 1.0f
+# define MOVESPEED 2.0f
 # define TURNSPEED 0.02f
 
 /* ***************** */
@@ -103,7 +103,7 @@ void		ft_draw_square(t_data *data, int x, int y, int width);
 void		ft_draw_minimap(t_data *data);
 
 /* DRAW_WALL.C */
-void		load_png(t_data *data);
+bool		load_png(t_data *data);
 void		ft_draw_wall(t_data *data, t_drawwall drawwall, int i);
 
 /* MOVEMENTS.C */

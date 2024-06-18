@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/14 13:46:45 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:15:02 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	read_cub(int fd, t_data *data)
 	return (0);
 }
 
-//open input file .cub
 int	open_cub(char *argv, t_data *data)
 {
 	int	fd;

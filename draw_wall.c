@@ -6,27 +6,28 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 11:34:34 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:55:08 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "minilibx/mlx42.h"
 
-void	load_png(t_data *data)
+bool	load_png(t_data *data)
 {
 	data->walltexture.so_walltexture = mlx_load_png(data->walltexture.so_path);
 	if (!data->walltexture.so_walltexture)
-		ft_errorfree("Texture", "Can't load texture", data);
+		return (ft_errorfree("Texture", "Can't load texture (SO)\n", data));
 	data->walltexture.ea_walltexture = mlx_load_png(data->walltexture.ea_path);
 	if (!data->walltexture.ea_walltexture)
-		ft_errorfree("Texture", "Can't load texture", data);
+		return (ft_errorfree("Texture", "Can't load texture (EA)\n", data));
 	data->walltexture.no_walltexture = mlx_load_png(data->walltexture.no_path);
 	if (!data->walltexture.no_walltexture)
-		ft_errorfree("Texture", "Can't load texture", data);
+		return (ft_errorfree("Texture", "Can't load texture (NO)\n", data));
 	data->walltexture.we_walltexture = mlx_load_png(data->walltexture.we_path);
 	if (!data->walltexture.we_walltexture)
-		ft_errorfree("Texture", "Can't load texture", data);
+		return (ft_errorfree("Texture", "Can't load texture (WE)\n", data));
+	return (0);
 }
 
 uint32_t get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
@@ -60,15 +61,16 @@ void	ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex, double proj_height,
 	y_stuff = 0;
 	if (proj_height >= WIN_H)
 		y_stuff = ((proj_height - WIN_H) / 2) * (texture->height / proj_height);
-	if (drawwall.walldirection == 'N')
-		tex->x = (int)drawwall.intercept.x % BLOCK_RES;
-	if (drawwall.walldirection == 'S')
-		tex->x = BLOCK_RES - (int)drawwall.intercept.x % BLOCK_RES;
-	if (drawwall.walldirection == 'E')
-		tex->x = (int)drawwall.intercept.y % BLOCK_RES;
-	if (drawwall.walldirection == 'W')
-		tex->x = BLOCK_RES - (int)drawwall.intercept.y % BLOCK_RES;
 	tex->y = y_stuff;
+	if (drawwall.walldirection == 'N')
+		tex->x = ((int)drawwall.intercept.x % BLOCK_RES);
+	if (drawwall.walldirection == 'S')
+		tex->x = (BLOCK_RES - ((int)drawwall.intercept.x % BLOCK_RES));
+	if (drawwall.walldirection == 'E')
+		tex->x = ((int)drawwall.intercept.y % BLOCK_RES);
+	if (drawwall.walldirection == 'W')
+		tex->x = (BLOCK_RES - ((int)drawwall.intercept.y % BLOCK_RES));
+	tex->x *= texture->width / BLOCK_RES;
 }
 
 void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
@@ -77,7 +79,7 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 	double			proj_height;
 	int				start;
 	t_gridpos		tex;
-	double			scale;
+	double		scale;
 	mlx_texture_t	*texture;
 	
 	proj_height = (DIS_PROJ * BLOCK_RES) / drawwall.raylength;

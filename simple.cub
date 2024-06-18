@@ -1,10 +1,9 @@
-	  NO ./path_to_the_north_texture some other stuff
+	  NO ./assets/BrickWall2.png	
 
-SO ./path_to_the_south_texture lfkjdhlkjd klj lkj 
-    WE     ./path_to_the_west_texture
+SO ./assets/BrickWall2.png
+    WE     ./assets/StoneWall1.png	
 
-
-EA ./path_to_the_east_texture
+EA ./assets/WoodenPlanksVerticalIrregular.png 
 
 F 26,32,28 slfkgsfljk
 

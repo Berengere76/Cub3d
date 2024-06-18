@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 13:11:07 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/18 12:05:11 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_error("Input", "wrong number of input arguments\n"));
 	data_init(&data);
-	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data))
+	if (open_cub(argv[1], &data) || map_is_open(&data) || parse_map(&data)
+		|| load_png(&data))
 		return (1);
-//PRINT INPUT VARIABLES
-	printf("NO_path: %s\n", data.walltexture.no_path);
-	printf("SO_path: %s\n", data.walltexture.so_path);
-	printf("WE_path: %s\n", data.walltexture.we_path);
-	printf("EA_path: %s\n", data.walltexture.ea_path);
-	printf("F colour: %d\n", data.floor);
-	printf("C colour: %d\n", data.ceiling);
-	printf("start position x: %f - %f\n", data.posx, data.posx / 64);
-	printf("start position y: %f - %f\n", data.posy, data.posy / 64);
-	printf("start direction rad: %f\n", data.view_dir);
-	int	i = 0;
-	while (data.map[i])
-	{
-		printf("%s\n", data.map[i]);
-		i++;
-	}
-/////////////////////////
 	data.mlx = mlx_init(WIN_W, WIN_H, "Cub3D", false);
 	init_img(&data);
-	load_png(&data);
 	ft_put_pixel_to_background(&data);
 	raycast(&data);
 	ft_draw_minimap(&data);

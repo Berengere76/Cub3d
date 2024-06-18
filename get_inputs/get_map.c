@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 18:30:11 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 11:11:44 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:27:50 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	is_not_last(t_data *data)
 
 int	ft_tablen(char **tab)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (tab)
@@ -48,19 +48,25 @@ int	ft_tablen(char **tab)
 
 char	**ft_realloc(char **tab)
 {
-	int		i;
-	int		len;
+	size_t		i;
+	size_t		len;
 	char	**output;
 
-	i = 0;
+	i = -1;
 	len = ft_tablen(tab);
 	output = malloc(sizeof(char *) * (len + 2));
 	if (!output)
 		return (NULL);
-	while (i < len)
+	while (++i < len)
 	{
 		output[i] = tab[i];
-		i++;
+		if (i >= INT_MAX)
+		{
+			free(output);
+			if (tab)
+				free(tab);
+			return (NULL);
+		}
 	}
 	output[i] = NULL;
 	output[i + 1] = NULL;
@@ -71,10 +77,14 @@ char	**ft_realloc(char **tab)
 
 int	get_map(char *line, t_data *data)
 {
-	int	i;
+	size_t	i;
 
 	data->map = ft_realloc(data->map);
+	if (!data->map)
+		return (ft_errorfree("Map", "map is too large\n", data));
 	i = ft_tablen(data->map);
+	if (i >= INT_MAX)
+		return (ft_errorfree("Map", "map is too large\n", data));
 	(data->map)[i] = ft_strdup(line);
 	if (!(data->map)[i])
 		return (1);
