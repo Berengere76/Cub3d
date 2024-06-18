@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 17:38:24 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:33:06 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	load_png(t_data *data)
 
 uint32_t get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
-	uint8_t *pixel = texture->pixels + (tex_y * texture->width + tex_x)
-		* texture->bytes_per_pixel;
+	uint8_t	*pixel;
+	
+	pixel = texture->pixels + (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
 	return *(uint32_t *)pixel;
 }
 
@@ -45,9 +46,9 @@ mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
 	if (drawwall.walldirection == 'S')
 		texture_wall = data->walltexture.so_walltexture;
 	if (drawwall.walldirection == 'W')
-		texture_wall = data->walltexture.ea_walltexture;
-	if (drawwall.walldirection == 'E')
 		texture_wall = data->walltexture.we_walltexture;
+	if (drawwall.walldirection == 'E')
+		texture_wall = data->walltexture.ea_walltexture;
 	return(texture_wall);
 }
 
@@ -59,16 +60,15 @@ void	ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex, double proj_height,
 	y_stuff = 0;
 	if (proj_height >= WIN_H)
 		y_stuff = ((proj_height - WIN_H) / 2) * (texture->height / proj_height);
-	if (drawwall.walldirection == 'N' || drawwall.walldirection == 'S')
-	{
+	if (drawwall.walldirection == 'N')
 		tex->x = (int)drawwall.intercept.x % BLOCK_RES;
-		tex->y = y_stuff;
-	}
-	if (drawwall.walldirection == 'E' || drawwall.walldirection == 'W')
-	{
-		tex->x = (int)drawwall.intercept.y % BLOCK_RES;
-		tex->y = y_stuff;
-	}
+	if (drawwall.walldirection == 'S')
+		tex->x = BLOCK_RES - (int)drawwall.intercept.x % BLOCK_RES;
+	if (drawwall.walldirection == 'E')
+		tex->y = (int)drawwall.intercept.y % BLOCK_RES;
+	if (drawwall.walldirection == 'W')
+		tex->y = BLOCK_RES - (int)drawwall.intercept.y % BLOCK_RES;
+	tex->y = y_stuff;
 }
 
 void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
