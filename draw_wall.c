@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 11:34:34 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:50:02 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,20 @@ void	load_png(t_data *data)
 
 uint32_t get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
-	uint8_t	*pixel;
+    uint8_t *pixel;
+	uint32_t color;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t a;
 	
 	pixel = texture->pixels + (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
-	return *(uint32_t *)pixel;
+    r = pixel[0];
+    g = pixel[1];
+    b = pixel[2];
+    a = pixel[3];
+    color = (r << 24) | (g << 16) | (b << 8) | a;
+    return (color);
 }
 
 mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
