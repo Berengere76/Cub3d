@@ -6,7 +6,7 @@
 /*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 17:04:53 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/17 19:03:35 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	load_png(t_data *data)
 
 uint32_t get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
-    uint8_t *pixel = texture->pixels + (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
+    uint8_t	*pixel;
+	
+	pixel = texture->pixels + (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
     return *(uint32_t *)pixel;
 }
 
@@ -44,9 +46,9 @@ mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
 	if (drawwall.walldirection == 'S')
 		texture_wall = data->walltexture.so_walltexture;
 	if (drawwall.walldirection == 'W')
-		texture_wall = data->walltexture.ea_walltexture;
-	if (drawwall.walldirection == 'E')
 		texture_wall = data->walltexture.we_walltexture;
+	if (drawwall.walldirection == 'E')
+		texture_wall = data->walltexture.ea_walltexture;
 	return(texture_wall);
 }
 
@@ -74,28 +76,31 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 		tex_y = ((proj_height - WIN_H) / 2) * (BLOCK_RES / proj_height);
 		// ((proj_height - WIN_H) / 2) * (BLOCK_RES / proj_height);
 	}
-	printf("%f | %f\n", proj_height, tex_y);
 	start = (WIN_H / 2) - (proj_height / 2);
 	if (start < 0)
 		start = 0;
-	if (drawwall.walldirection == 'N' || drawwall.walldirection == 'S')
+	if (drawwall.walldirection == 'N')
 		tex_x = (int)drawwall.intercept.x % BLOCK_RES;
-	if (drawwall.walldirection == 'E' || drawwall.walldirection == 'W')
+	if (drawwall.walldirection == 'S')
+		tex_x = BLOCK_RES - (int)drawwall.intercept.x % BLOCK_RES;
+	if (drawwall.walldirection == 'E')
 		tex_y = (int)drawwall.intercept.y % BLOCK_RES;
+	if (drawwall.walldirection == 'W')
+		tex_y = BLOCK_RES - (int)drawwall.intercept.y % BLOCK_RES;
 	scale = BLOCK_RES / proj_height;
 	// printf("proj height:%f | tex_x: %f | tex_y: %f\n", proj_height, tex_x, tex_y);
 	while (proj_height > 0 && start < WIN_H)
 	{
 		texture = get_texture_side(data, drawwall);
-		color = get_texture_color(texture, tex_x, tex_y);
+		// color = get_texture_color(texture, tex_x, tex_y);
 		if (drawwall.walldirection == 'N' || drawwall.walldirection == 'S')
 		{
-			color = get_texture_color(texture, tex_x, tex_y);
+			color = get_texture_color(texture, tex_x, (int)tex_y % BLOCK_RES);
 			tex_y += scale;
 		}
 		if (drawwall.walldirection == 'E' || drawwall.walldirection == 'W')
 		{
-			color = get_texture_color(texture, tex_y, tex_x);
+			color = get_texture_color(texture, (int)tex_y % BLOCK_RES, tex_x);
 			tex_x += scale;
 		}
 		mlx_put_pixel(data->img, i, start, color);
