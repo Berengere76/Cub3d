@@ -10,9 +10,6 @@ FT			= Libft
 LIBFT		= $(FT)/libft.a
 
 SOURCE :=	main.c						\
-			texture.c					\
-			movements.c					\
-			minimap.c					\
 			get_inputs/check_map.c		\
 			get_inputs/error.c			\
 			get_inputs/get_colours.c	\
@@ -22,9 +19,12 @@ SOURCE :=	main.c						\
 			get_inputs/gnl.c			\
 			get_inputs/parse_input.c	\
 			get_inputs/parse_map.c		\
-			find_intercept.c			\
-			raycast.c					\
-			draw_wall.c 
+			build_maze/draw_wall.c		\
+			build_maze/find_intercept.c	\
+			build_maze/minimap.c		\
+			build_maze/movements.c		\
+			build_maze/raycast.c		\
+			build_maze/texture.c
 
 OBJ 	= $(SOURCE:.c=.o)
 
