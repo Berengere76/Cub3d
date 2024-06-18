@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:22:06 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:31:59 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	quit_game(t_data *data)
 
 void	check_and_move(t_data *data, t_gridpos check_wall)
 {
-	if (is_wall(data, check_wall))
+	if (is_wall(data, check_wall) || is_off_map(data, check_wall))
 		return ;
 	data->posx = check_wall.x;
 	data->posy = check_wall.y;

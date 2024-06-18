@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:05:02 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 11:39:06 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:27:49 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	map_is_open(t_data *data)
 				|| data->map[i][j] == ' '))
 				return (ft_errorfree("Map",
 						"invalid character (use 0,1,N,E,S,W,' ')\n", data));
-			if (data->map[i][j] == '0')
+			if (data->map[i][j] == '0' || is_direc(data->map[i][j]))
 			{
 				if (check_0(data->map, i, j))
 					return (ft_errorfree("Map", "map is not closed\n", data));
