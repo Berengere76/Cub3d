@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:06:59 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:54:58 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <limits.h>
-# include <stdio.h> //TODO REMOVE (printf)
+# include <stdio.h>
 
 /* ***************** */
 /*      DEFINES      */
@@ -32,9 +32,9 @@
 
 # define WIN_W 640
 # define WIN_H 480
-# define BLOCK_RES 200 // height/width/depth of walls (and all other cubes)
-# define FOV_RAD 1.0472 // 60 degree FOV in radians
-# define MOVESPEED 2.0f
+# define BLOCK_RES 64		// height/width/depth of walls (and all other cubes)
+# define FOV_RAD 1.0472		// 60 degree FOV in radians
+# define MOVESPEED 1.0f
 # define TURNSPEED 0.02f
 
 /* ***************** */
@@ -71,9 +71,9 @@ typedef struct s_data
 	int				max_len;
 	int				scalew;
 	int				scaleh;
-	double			posx; //start position of the player
+	double			posx;		//start position of the player
 	double			posy;
-	double			view_dir; //start direction of player's POV in radians
+	double			view_dir;	//start direction of player's POV in radians
 	t_walltexture	walltexture;
 	char			**map;
 	int				floor;

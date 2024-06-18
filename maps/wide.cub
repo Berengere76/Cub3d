@@ -1,10 +1,7 @@
-	  NO ./path_to_the_north_texture some other stuff
-
-SO ./path_to_the_south_texture lfkjdhlkjd klj lkj 
-    WE     ./path_to_the_west_texture
-
-
-EA ./path_to_the_east_texture
+NO ./assets/mur.png
+SO ./assets/mur2.png
+WE ./assets/mur3.png
+EA ./assets/mur4.png
 
 F 26,32,28 slfkgsfljk
 
