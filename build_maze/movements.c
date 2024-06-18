@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:27:34 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 16:52:16 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:11:12 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "minilibx/mlx42.h"
+#include "../cub3d.h"
 
 void	move_left(t_data *data)
 {
