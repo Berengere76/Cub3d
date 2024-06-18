@@ -1,18 +1,18 @@
 NO ./assets/elmo.png
 SO ./assets/elmo.png
-WE ./assets/elmo.png
-EA ./assets/elmo.png
+WE ./assets/evil.png
+EA ./assets/evil.png
 
-F 26,32,28 slfkgsfljk
+F 26,32,28
 
-C 51,216,129 
+C 255,0,0 egsefsfsfsefsfs
 
 1111111111
   11000001
-1110010001
-1000000N01
+1110010N01
+1000000001
 1111101111
-1111101111
+1110001111
   11000001
 1110010001
 1000000001
