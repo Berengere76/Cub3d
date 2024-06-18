@@ -6,12 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 16:53:36 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:22:06 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "minilibx/mlx42.h"
 
 int	data_init(t_data *data)
 {

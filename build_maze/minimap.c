@@ -6,12 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:52:06 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/17 14:49:17 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:20:35 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "minilibx/mlx42.h"
+#include "../cub3d.h"
 
 void	ft_draw_square(t_data *data, int x, int y, int size)
 {

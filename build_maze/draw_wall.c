@@ -6,12 +6,11 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 16:48:52 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:42:16 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "minilibx/mlx42.h"
+#include "../cub3d.h"
 
 bool	load_png(t_data *data)
 {
@@ -79,7 +78,10 @@ void	ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex, double proj_height,
 		tex->x = ((int)drawwall.intercept.y % BLOCK_RES);
 	if (drawwall.walldirection == 'W')
 		tex->x = (BLOCK_RES - ((int)drawwall.intercept.y % BLOCK_RES));
-	tex->x *= texture->width / BLOCK_RES;
+	if (texture->width >= BLOCK_RES)
+		tex->x *= (texture->width / BLOCK_RES);
+	else if (texture->width < BLOCK_RES)
+		tex->x /= M_PI;
 }
 
 void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
