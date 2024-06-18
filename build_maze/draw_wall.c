@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:42:16 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:46:02 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 	scale = texture->height / proj_height;
 	while (proj_height > 0 && start < WIN_H)
 	{
-		tex.y += scale;
 		mlx_put_pixel(data->img, i, start,
 			get_texture_color(texture, tex.x, tex.y));
+		tex.y += scale;
 		start++;
 		proj_height -= 1;
 	}
