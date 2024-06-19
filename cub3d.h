@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 17:29:22 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:57:04 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,6 @@ typedef struct walltexture
 	char			*we_path;
 	char			*ea_path;
 }		t_walltexture;
-
-typedef struct s_colours
-{
-	uint8_t	r;
-	uint8_t	g;
-	uint8_t	b;
-	uint8_t	a;
-}	t_colours;
 
 typedef struct s_gridpos
 {

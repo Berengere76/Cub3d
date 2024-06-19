@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 17:28:10 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:14:38 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,16 @@ bool	load_png(t_data *data)
 
 uint32_t	get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
-	t_colours	rgba;
 	uint8_t		*pixel;
-	uint32_t	color;
 
 	if (tex_x >= (int)texture->width)
 		tex_x = (int)texture->width;
-	if (tex_x < 0 || tex_y < 0 || tex_y >= (int)texture->height)
+	if (tex_x < 0 || tex_y < 0 || tex_y >= (int)texture->height - 1)
 		return (0xFF000000);
 	pixel = texture->pixels + (tex_y * texture->width + tex_x)
 		* texture->bytes_per_pixel;
-	rgba = (t_colours){pixel[0], pixel[1], pixel[2], pixel[3]};
-	color = (rgba.r << 24) | (rgba.g << 16) | (rgba.b << 8) | rgba.a;
-	return (color);
+	return ((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8)
+		| pixel[3]);
 }
 
 mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
