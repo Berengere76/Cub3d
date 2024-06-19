@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:46:17 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:30:28 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ int	length_map(t_data *data)
 
 void	init_img(t_data *data)
 {
+	size_t	max_dimension;
+
 	data->map_length = length_map(data);
 	data->map_height = ft_tablen(data->map);
 	if (data->map_length >= data->map_height)
-		data->max_len = data->map_length;
+		max_dimension = data->map_length;
 	else
-		data->max_len = data->map_height;
+		max_dimension = data->map_height;
 	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	data->scalew = WIN_W / (data->max_len * (WIN_W / 125));
-	data->scaleh = WIN_H / (data->max_len * (WIN_H / 125));
+	data->scalew = WIN_W / (max_dimension * (WIN_W / 125));
+	data->scaleh = WIN_H / (max_dimension * (WIN_H / 125));
 }
 
 void	ft_put_pixel_to_background(t_data *data)

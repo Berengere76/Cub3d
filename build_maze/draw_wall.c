@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:46:02 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:28:10 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
 	return (texture_wall);
 }
 
-void	ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex, double proj_height,
-	mlx_texture_t *texture)
+static void	_ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex,
+	double proj_height, mlx_texture_t *texture)
 {
 	double	y_stuff;
 
@@ -78,10 +78,7 @@ void	ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex, double proj_height,
 		tex->x = ((int)drawwall.intercept.y % BLOCK_RES);
 	if (drawwall.walldirection == 'W')
 		tex->x = (BLOCK_RES - ((int)drawwall.intercept.y % BLOCK_RES));
-	if (texture->width >= BLOCK_RES)
-		tex->x *= (texture->width / BLOCK_RES);
-	else if (texture->width < BLOCK_RES)
-		tex->x /= M_PI;
+	tex->x = (tex->x * texture->width) / BLOCK_RES;
 }
 
 void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
@@ -98,7 +95,7 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 	if (start < 0)
 		start = 0;
 	texture = get_texture_side(data, drawwall);
-	ft_draw_wall2(drawwall, &tex, proj_height, texture);
+	_ft_draw_wall2(drawwall, &tex, proj_height, texture);
 	scale = texture->height / proj_height;
 	while (proj_height > 0 && start < WIN_H)
 	{

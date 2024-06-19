@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 13:24:41 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:01:07 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ double	_start_rad(char dir)
 
 static void	_save_start_pos(t_data *data, size_t i, size_t j)
 {
-	data->posx = (j * BLOCK_RES) + (BLOCK_RES / 2);
-	data->posy = (i * BLOCK_RES) + (BLOCK_RES / 2);
+	data->pos.x = (j * BLOCK_RES) + (BLOCK_RES / 2);
+	data->pos.y = (i * BLOCK_RES) + (BLOCK_RES / 2);
 	data->view_dir = _start_rad(data->map[i][j]);
 }
 
@@ -44,16 +44,16 @@ int	parse_map(t_data *data)
 		j = 0;
 		while (j < ft_strlen(data->map[i]))
 		{
-			if (is_direc(data->map[i][j]) && data->posx != -1)
+			if (is_direc(data->map[i][j]) && data->pos.x != -1)
 				return (ft_errorfree("Map",
 						"more than one player start point given\n", data));
-			if (is_direc(data->map[i][j]) && data->posx == -1)
+			if (is_direc(data->map[i][j]) && data->pos.x == -1)
 				_save_start_pos(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	if (data->posx == -1)
+	if (data->pos.x == -1)
 		return (ft_errorfree("Map", "no player start point given\n", data));
 	return (0);
 }

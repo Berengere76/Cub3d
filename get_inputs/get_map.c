@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 18:30:11 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 16:54:56 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:02:55 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_tablen(char **tab)
 	return (i);
 }
 
-char	**ft_realloc(char **tab)
+static char	**_ft_realloc(char **tab)
 {
 	size_t		i;
 	size_t		len;
@@ -79,7 +79,7 @@ int	get_map(char *line, t_data *data)
 {
 	size_t	i;
 
-	data->map = ft_realloc(data->map);
+	data->map = _ft_realloc(data->map);
 	if (!data->map)
 		return (ft_errorfree("Map", "map is too large\n", data));
 	i = ft_tablen(data->map);

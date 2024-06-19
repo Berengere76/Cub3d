@@ -6,13 +6,13 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 11:49:46 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:54:32 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_table(char **tab)
+static void	_free_table(char **tab)
 {
 	int	i;
 
@@ -39,24 +39,24 @@ void	ft_free(t_data *data)
 	if (data->walltexture.ea_path)
 		free(data->walltexture.ea_path);
 	if (data->map)
-		free_table(data->map);
+		_free_table(data->map);
 }
 
 int	ft_errorfree(char *type, char *message, t_data *data)
 {
-	write (2, "Error\n", 6);
-	write (2, type, ft_strlen(type));
-	write (2, " error: ", 8);
-	write (2, message, ft_strlen(message));
+	write (STDERR_FILENO, "Error\n", 6);
+	write (STDERR_FILENO, type, ft_strlen(type));
+	write (STDERR_FILENO, " error: ", 8);
+	write (STDERR_FILENO, message, ft_strlen(message));
 	ft_free(data);
 	return (1);
 }
 
 int	ft_error(char *type, char *message)
 {
-	write (2, "Error\n", 6);
-	write (2, type, ft_strlen(type));
-	write (2, " error: ", 8);
-	write (2, message, ft_strlen(message));
+	write (STDERR_FILENO, "Error\n", 6);
+	write (STDERR_FILENO, type, ft_strlen(type));
+	write (STDERR_FILENO, " error: ", 8);
+	write (STDERR_FILENO, message, ft_strlen(message));
 	return (1);
 }

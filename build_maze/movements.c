@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:27:34 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/18 17:46:13 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:02:42 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	move_left(t_data *data)
 {
 	t_gridpos	check_wall;
 
-	check_wall.x = data->posx - sin(data->view_dir) * MOVESPEED;
-	check_wall.y = data->posy - cos(data->view_dir) * MOVESPEED;
+	check_wall.x = data->pos.x - sin(data->view_dir) * MOVESPEED;
+	check_wall.y = data->pos.y - cos(data->view_dir) * MOVESPEED;
 	return (check_and_move(data, check_wall));
 }
 
@@ -25,8 +25,8 @@ void	move_right(t_data *data)
 {
 	t_gridpos	check_wall;
 
-	check_wall.x = data->posx + sin(data->view_dir) * MOVESPEED;
-	check_wall.y = data->posy + cos(data->view_dir) * MOVESPEED;
+	check_wall.x = data->pos.x + sin(data->view_dir) * MOVESPEED;
+	check_wall.y = data->pos.y + cos(data->view_dir) * MOVESPEED;
 	return (check_and_move(data, check_wall));
 }
 
@@ -34,8 +34,8 @@ void	move_front(t_data *data)
 {
 	t_gridpos	check_wall;
 
-	check_wall.x = data->posx + cos(data->view_dir) * MOVESPEED;
-	check_wall.y = data->posy - sin(data->view_dir) * MOVESPEED;
+	check_wall.x = data->pos.x + cos(data->view_dir) * MOVESPEED;
+	check_wall.y = data->pos.y - sin(data->view_dir) * MOVESPEED;
 	return (check_and_move(data, check_wall));
 }
 
@@ -43,8 +43,8 @@ void	move_back(t_data *data)
 {
 	t_gridpos	check_wall;
 
-	check_wall.x = data->posx - cos(data->view_dir) * MOVESPEED;
-	check_wall.y = data->posy + sin(data->view_dir) * MOVESPEED;
+	check_wall.x = data->pos.x - cos(data->view_dir) * MOVESPEED;
+	check_wall.y = data->pos.y + sin(data->view_dir) * MOVESPEED;
 	return (check_and_move(data, check_wall));
 }
 

@@ -1,13 +1,13 @@
-	  NO ./assets/mur.png	
+	  NO ./assets/StoneWall1.png	lskdlsdjflkdfj
 
-SO ./assets/BrickWall2.png
-    WE     ./assets/StoneWall1.png	
+SO ./assets/StoneWall2.png
+    WE     ./assets/StoneWall3.png	
 
-EA ./assets/WoodenPlanksVerticalIrregular.png 
+EA ./assets/StoneWall4.png 
 
-F 26,32,28 slfkgsfljk
-
-C 51,216,129 
+C 2,119,189 
+F 33,33,33 slfkgsfljk
+ 	
 
 1111111
 1000001

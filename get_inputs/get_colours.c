@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colours.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:20:30 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/07 14:03:50 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/19 13:42:19 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ static int	_is_num(char c)
 
 static int	_atouc(char **temp)
 {
-	int	i;
 	int	output;
 
-	i = 0;
 	output = 0;
 	if (!(**temp >= '0' && **temp <= '9'))
 		return (-1);

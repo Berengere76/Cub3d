@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
+/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:05:02 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 18:27:49 by blebas           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:49:22 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ bool	is_valid(char c)
 	return (c == '1' || c == '0' || is_direc(c));
 }
 
-//checks if 0 is surrounded by map characters
 bool	check_0(char **map, size_t row, size_t col)
 {
 	size_t	nb_rows;

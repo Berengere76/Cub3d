@@ -6,13 +6,12 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/18 12:15:02 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:24:08 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-//check for .cub extension
 int	check_cub(char *argv)
 {
 	char	*cub;
