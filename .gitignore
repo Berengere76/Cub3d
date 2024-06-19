@@ -4,6 +4,3 @@
 .vscode
 minilibx/CMakeCache.txt
 cub3d
-.functions
-chforbid
-vendor
