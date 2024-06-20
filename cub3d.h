@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/20 12:48:01 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:44:30 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 /*      DEFINES      */
 /* ***************** */
 
-# define WIN_W 640			// window width in pixels
-# define WIN_H 480			// window height in pixels
+# define DEFAULT_WIN_W 640	// window width in pixels
+# define DEFAULT_WIN_H 480	// window height in pixels
 # define BLOCK_RES 1000		// height/width/depth of walls (in units)
 # define FOV_RAD 1.0472		// 60 degree FOV in radians
-# define MOVESPEED 10.0f	// units moved per key hook cycle
-# define TURNSPEED 0.04f	// radians for view rotation per key hook cycle
+# define MOVESPEED 15.0f	// units moved per key hook cycle
+# define TURNSPEED 0.02f	// radians for view rotation per key hook cycle
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -69,6 +69,8 @@ typedef struct s_drawwall
 typedef struct s_data
 {
 	void			*mlx;
+	int				win_width;
+	int				win_height;
 	mlx_image_t		*img;
 	t_walltexture	walltexture;	// NSEW wall texture paths and pointers
 	int				ceiling;		// ceiling colour (RGBA)
@@ -484,6 +486,23 @@ char		*ft_strcpy(char *str1, char *str2);
 /* GET_INPUTS/PARSE_INPUT.C                                                   */
 /******************************************************************************/
 
+/**
+ * @brief Reads input file line by line using gnl(), dispatches to get() 
+ * functions to save data to data structure
+ * 
+ * @param fd input .cub file
+ * @param data input structure
+ * @return int returns 1 via ft_errorfree() if error, otherwise 0
+ */
+int			read_cub(int fd, t_data *data);
+
+/**
+ * @brief Checks for .cub suffix on the input file
+ * 
+ * @param argv input file name
+ * @return int returns 1 via ft_errorfree() if error, otherwise 0
+ */
+int			check_cub(char *argv);
 /**
  * @brief Opens the input .cub file, calls:
  * - gnl() to reads the file 

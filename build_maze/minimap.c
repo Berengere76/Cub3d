@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:52:06 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 14:16:30 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:57:36 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_draw_square(t_data *data, int x, int y, int colour)
 		y = y_buf;
 		while (y < (data->scaleh + y_buf))
 		{
-			if (x > 0 && y > 0 && x < WIN_W && y < WIN_H)
+			if (x > 0 && y > 0 && x < data->win_width && y < data->win_height)
 				mlx_put_pixel(data->img, x, y, colour);
 			y++;
 		}

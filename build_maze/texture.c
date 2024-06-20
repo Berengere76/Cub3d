@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:18:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 17:30:28 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:49:01 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	init_img(t_data *data)
 		max_dimension = data->map_length;
 	else
 		max_dimension = data->map_height;
-	data->img = mlx_new_image(data->mlx, WIN_W, WIN_H);
-	data->scalew = WIN_W / (max_dimension * (WIN_W / 125));
-	data->scaleh = WIN_H / (max_dimension * (WIN_H / 125));
+	data->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	data->scalew = data->win_width / (max_dimension * (data->win_width / 125));
+	data->scaleh = data->win_height
+		/ (max_dimension * (data->win_height / 125));
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
 void	ft_put_pixel_to_background(t_data *data)
@@ -61,12 +63,12 @@ void	ft_put_pixel_to_background(t_data *data)
 
 	x = 0;
 	y = 0;
-	while (x < WIN_W)
+	while (x < data->win_width)
 	{
 		y = 0;
-		while (y < WIN_H)
+		while (y < data->win_height)
 		{
-			if (y < WIN_H / 2)
+			if (y < data->win_height / 2)
 				mlx_put_pixel(data->img, x, y, data->ceiling);
 			else
 				mlx_put_pixel(data->img, x, y, data->floor);

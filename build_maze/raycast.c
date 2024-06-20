@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:47:44 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/20 12:48:34 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:15:20 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	norm_angle(double angle)
 
 bool	is_off_map(t_data *data, t_gridpos intercept)
 {
-	if (intercept.x >= (data->map_length * BLOCK_RES)
+	if (intercept.x > (data->map_length * BLOCK_RES)
 		|| intercept.x < 0 || intercept.y < 0
 		|| intercept.y >= (data->map_height * BLOCK_RES)
 		|| isnan(intercept.x) || isnan(intercept.y))
@@ -70,12 +70,12 @@ void	raycast(t_data *data)
 
 	i = 0;
 	ray_angle = data->view_dir + (FOV_RAD / 2);
-	while (i < WIN_W)
+	while (i < data->win_width)
 	{
 		ray_angle = norm_angle(ray_angle);
 		ray_data = ray_len(data, ray_angle);
 		ft_draw_wall(data, ray_data, i);
-		ray_angle -= FOV_RAD / WIN_W;
+		ray_angle -= FOV_RAD / data->win_width;
 		i++;
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/20 12:46:16 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:11:41 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,15 @@ mlx_texture_t	*get_texture_side(t_data *data, t_drawwall drawwall)
 }
 
 static void	_ft_draw_wall2(t_drawwall drawwall, t_gridpos *tex,
-	double proj_height, mlx_texture_t *texture)
+	mlx_texture_t *texture)
 {
-	double	y_stuff;
-
-	y_stuff = 0;
-	if (proj_height >= WIN_H)
-		y_stuff = ((proj_height - WIN_H) / 2) * (texture->height / proj_height);
-	tex->y = y_stuff;
 	if (drawwall.walldirection == 'N')
 		tex->x = ((int)drawwall.intercept.x % BLOCK_RES);
-	if (drawwall.walldirection == 'S')
+	else if (drawwall.walldirection == 'S')
 		tex->x = (BLOCK_RES - ((int)drawwall.intercept.x % BLOCK_RES));
-	if (drawwall.walldirection == 'E')
+	else if (drawwall.walldirection == 'E')
 		tex->x = ((int)drawwall.intercept.y % BLOCK_RES);
-	if (drawwall.walldirection == 'W')
+	else if (drawwall.walldirection == 'W')
 		tex->x = (BLOCK_RES - ((int)drawwall.intercept.y % BLOCK_RES));
 	tex->x = (tex->x * texture->width) / BLOCK_RES;
 }
@@ -88,20 +82,22 @@ void	ft_draw_wall(t_data *data, t_drawwall drawwall, int i)
 	double			scale;
 	mlx_texture_t	*texture;
 
-	proj_height = (((WIN_W / 2) / tan(FOV_RAD / 2)) * BLOCK_RES)
+	proj_height = (((data->win_width / 2) / tan(FOV_RAD / 2)) * BLOCK_RES)
 		/ drawwall.raylength;
-	start = (WIN_H / 2) - (proj_height / 2);
+	start = (data->win_height / 2) - (proj_height / 2);
 	if (start < 0)
 		start = 0;
 	texture = get_texture_side(data, drawwall);
-	_ft_draw_wall2(drawwall, &tex, proj_height, texture);
+	tex.y = 0;
+	if (proj_height >= data->win_height)
+		tex.y = ((proj_height - data->win_height) / 2)
+			* (texture->height / proj_height);
+	_ft_draw_wall2(drawwall, &tex, texture);
 	scale = texture->height / proj_height;
-	while (proj_height > 0 && start < WIN_H)
+	while (proj_height-- > 0 && start < data->win_height)
 	{
-		mlx_put_pixel(data->img, i, start,
+		mlx_put_pixel(data->img, i, start++,
 			get_texture_color(texture, tex.x, tex.y));
 		tex.y += scale;
-		start++;
-		proj_height -= 1;
 	}
 }

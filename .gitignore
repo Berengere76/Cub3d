@@ -3,4 +3,4 @@
 */*.a
 .vscode
 minilibx/CMakeCache.txt
-cub3d
+cub3D

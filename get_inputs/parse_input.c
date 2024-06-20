@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/20 11:35:23 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:37:52 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,22 @@ int	extract_data(char *line, t_data *data)
 	return (0);
 }
 
+void	ft_mapsize(t_data *data)
+{
+	size_t	i;
+	size_t	line_len;
+
+	i = 0;
+	data->map_height = ft_tablen(data->map);
+	data->map_length = 0;
+	while (i < (size_t)data->map_height)
+	{
+		line_len = ft_strlen(data->map[i++]);
+		if (line_len > (size_t)data->map_length)
+			data->map_length = line_len;
+	}
+}
+
 int	read_cub(int fd, t_data *data)
 {
 	char	*line;
@@ -102,28 +118,6 @@ int	read_cub(int fd, t_data *data)
 		return (1);
 	if (!data->map)
 		return (ft_errorfree("Input", "incomplete .cub file (no map)\n", data));
-	data->map_height = ft_tablen(data->map);
-	data->map_length = 0;
-	size_t tmp;
-	size_t i = 0;
-	while (i < (size_t)data->map_height)
-	{
-		tmp = ft_strlen(data->map[i++]);
-		if (tmp > (size_t)data->map_length)
-			data->map_length = tmp;
-	}
+	ft_mapsize(data);
 	return (0);
-}
-
-int	open_cub(char *argv, t_data *data)
-{
-	int	fd;
-
-	if (check_cub(argv))
-		return (ft_errorfree("Input",
-				"invalid file extension (need \".cub\")", data));
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
-		return (ft_errorfree("Input", "failed to open input file", data));
-	return (read_cub(fd, data));
 }
