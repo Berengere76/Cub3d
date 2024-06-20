@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 16:26:55 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:37:29 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,6 @@ int	data_init(t_data *data)
 	data->pos.x = -1;
 	data->pos.y = -1;
 	return (0);
-}
-
-void	ft_hook(void *param)
-{
-	t_data	*data;
-
-	data = param;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		rotate(data, -1);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		rotate(data, 1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-		move_front(data);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		move_back(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		move_left(data);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		move_right(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(data->mlx);
-}
-
-void	check_and_move(t_data *data, t_gridpos check_wall)
-{
-	if (is_wall(data, check_wall) || is_off_map(data, check_wall))
-		return ;
-	data->pos.x = check_wall.x;
-	data->pos.y = check_wall.y;
-	ft_put_pixel_to_background(data);
-	raycast(data);
-	ft_draw_minimap(data);
 }
 
 void	quit_game(t_data *data)

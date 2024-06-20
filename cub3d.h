@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 17:57:04 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:48:01 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define BLOCK_RES 1000		// height/width/depth of walls (in units)
 # define FOV_RAD 1.0472		// 60 degree FOV in radians
 # define MOVESPEED 10.0f	// units moved per key hook cycle
-# define TURNSPEED 0.02f	// radians for view rotation per key hook cycle
+# define TURNSPEED 0.04f	// radians for view rotation per key hook cycle
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -168,36 +168,13 @@ void		ft_draw_minimap(t_data *data);
 /******************************************************************************/
 
 /**
- * @brief Handles forward movement (W) calculations, sends to check_and_move() 
+ * @brief Handles movement (NSEW) calculations, sends to check_and_move() 
  * to make sure the move will not put the player into a wall or beyond the map.
  * 
  * @param data input structure
+ * @param angle movement angle in radians
  */
-void		move_front(t_data *data);
-
-/**
- * @brief Handles backward movement (S) calculations, sends to check_and_move() 
- * to make sure the move will not put the player into a wall or beyond the map.
- * 
- * @param data input structure
- */
-void		move_back(t_data *data);
-
-/**
- * @brief Handles left movement (A) calculations, sends to check_and_move() 
- * to make sure the move will not put the player into a wall or beyond the map.
- * 
- * @param data input structure
- */
-void		move_left(t_data *data);
-
-/**
- * @brief Handles right movement (D) calculations, sends to check_and_move() 
- * to make sure the move will not put the player into a wall or beyond the map.
- * 
- * @param data input structure
- */
-void		move_right(t_data *data);
+void		move(t_data *data, double angle);
 
 /**
  * @brief Handles head movement/viewpoint rotation (left/right arrow) 
@@ -211,6 +188,27 @@ void		move_right(t_data *data);
  * @param dir rotation direction
  */
 void		rotate(t_data *data, int dir);
+
+/**
+ * @brief Generic keyhook function called by mlx_loop_hook()
+ * 
+ * @param param data structure
+ */
+void		ft_hook(void *param);
+
+/**
+ * @brief Helper function for movements (WASD), checks to make sure the move 
+ * will not put the player into a wall (is_wall() or off the map (is_off_map())
+ * before updating the player position and calling functions to redraw the 
+ * image:
+ * - ft_put_pixel_to_background() ceiling and floor colours
+ * - raycast() draws walls
+ * - ft_draw_minimap() draws minimap
+ * 
+ * @param data inout structure
+ * @param check_wall grid position to check before moving
+ */
+void		check_and_move(t_data *data, t_gridpos check_wall);
 
 /******************************************************************************/
 /* BUILD_MAZE/RAYCAST.C                                                       */
@@ -520,27 +518,6 @@ int			parse_map(t_data *data);
 /******************************************************************************/
 
 /**
- * @brief Generic keyhook function called by mlx_loop_hook()
- * 
- * @param param data structure
- */
-void		ft_hook(void *param);
-
-/**
- * @brief Helper function for movements (WASD), checks to make sure the move 
- * will not put the player into a wall (is_wall() or off the map (is_off_map())
- * before updating the player position and calling functions to redraw the 
- * image:
- * - ft_put_pixel_to_background() ceiling and floor colours
- * - raycast() draws walls
- * - ft_draw_minimap() draws minimap
- * 
- * @param data inout structure
- * @param check_wall grid position to check before moving
- */
-void		check_and_move(t_data *data, t_gridpos check_wall);
-
-/**
  * @brief Handles cleanup on game closure. Calls mlx functions to delete 
  * texture pngs, close and terminate the window, and call ft_free().
  * 
@@ -559,5 +536,7 @@ void		quit_game(t_data *data);
  * @return int 1 via ft_error() or ft_errorfree() if error, otherwise 0
  */
 int			main(int argc, char **argv);
+
+t_drawwall	ray_len(t_data *data, double ray_angle);
 
 #endif

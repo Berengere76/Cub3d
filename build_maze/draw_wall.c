@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:46:18 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/19 18:14:38 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:46:16 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ uint32_t	get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
 	uint8_t		*pixel;
 
 	if (tex_x >= (int)texture->width)
-		tex_x = (int)texture->width;
-	if (tex_x < 0 || tex_y < 0 || tex_y >= (int)texture->height - 1)
+		tex_x = (int)texture->width - 1;
+	if (tex_y >= (int)texture->height)
+		tex_y = (int)texture->height - 1;
+	if (tex_x < 0 || tex_y < 0)
 		return (0xFF000000);
 	pixel = texture->pixels + (tex_y * texture->width + tex_x)
 		* texture->bytes_per_pixel;

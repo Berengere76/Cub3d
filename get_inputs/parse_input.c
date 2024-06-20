@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:57:04 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/19 16:24:08 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:35:23 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,16 @@ int	read_cub(int fd, t_data *data)
 		return (1);
 	if (!data->map)
 		return (ft_errorfree("Input", "incomplete .cub file (no map)\n", data));
+	data->map_height = ft_tablen(data->map);
+	data->map_length = 0;
+	size_t tmp;
+	size_t i = 0;
+	while (i < (size_t)data->map_height)
+	{
+		tmp = ft_strlen(data->map[i++]);
+		if (tmp > (size_t)data->map_length)
+			data->map_length = tmp;
+	}
 	return (0);
 }
 
