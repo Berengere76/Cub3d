@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:41:16 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/20 14:41:50 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:54:05 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	*_realloc(void *ptr, size_t old_size, size_t new_size)
 
 	new_ptr = malloc(new_size);
 	if (new_ptr == NULL)
-		return (free(ptr), NULL);
+	{
+		free(ptr);
+		return (NULL);
+	}
 	if (old_size > new_size)
 		old_size = new_size;
 	ft_memcpy(new_ptr, ptr, old_size);

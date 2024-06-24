@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colours.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 17:20:30 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/19 13:42:19 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:21:00 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static int	_atouc(char **temp)
 	return (output);
 }
 
-int	ctoi(char *colours)
+long	ctoi(char *colours)
 {
-	int		i;
-	int		rgb;
-	int		num;
+	long	i;
+	long	rgb;
+	long	num;
 	char	*temp;
 
 	i = 3;
@@ -62,7 +62,7 @@ int	ctoi(char *colours)
 			return (-1);
 		rgb += num;
 		rgb <<= 8;
-		if (*temp == ',')
+		while (*temp == ',' || is_spc(*temp))
 			temp++;
 		i--;
 	}
@@ -75,7 +75,7 @@ int	get_colours(char *line, t_data *data)
 	char	*temp;
 	char	*colours;
 	char	c;
-	int		rgb;
+	long	rgb;
 
 	temp = line;
 	while (is_spc(*temp))
@@ -86,7 +86,7 @@ int	get_colours(char *line, t_data *data)
 	while (is_spc(*temp))
 		temp++;
 	colours = temp;
-	while (*temp && (_is_num(*temp) || *temp == ','))
+	while (*temp && (_is_num(*temp) || *temp == ',' || is_spc(*temp)))
 		temp++;
 	*temp = '\0';
 	rgb = ctoi(colours);

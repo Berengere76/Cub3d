@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:26:57 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/19 15:54:32 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:31:43 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_free(t_data *data)
 		free(data->walltexture.ea_path);
 	if (data->map)
 		_free_table(data->map);
+	if (data->cub_fd != -1)
+		close (data->cub_fd);
 }
 
 int	ft_errorfree(char *type, char *message, t_data *data)

@@ -3,9 +3,11 @@ SO ./assets/mur4.png
 WE ./assets/mur_green.png
 EA ./assets/mur_red.png
 
-F 26,32,28 slfkgsfljk
+F 26,32,28
 
 C 51,216,129 
+
+F 255,255,255
 
 1111111111111111111111111
 1000000000110000000000001

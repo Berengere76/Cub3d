@@ -1,7 +1,7 @@
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/mlx42.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/edit_cache.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/rebuild_cache.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/list_install_components.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/install.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/install/local.dir
-/home/kcouchma/Documents/cub3d/cub3d_github/minilibx/CMakeFiles/install/strip.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/mlx42.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/edit_cache.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/rebuild_cache.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/list_install_components.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/install.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/install/local.dir
+/home/blebas/goinfre/test/minilibx/CMakeFiles/install/strip.dir

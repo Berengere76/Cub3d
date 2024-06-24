@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:08:28 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/20 11:03:49 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:02:23 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	find_first_hor(t_data *data, double angle, t_gridpos *hor_int,
 	if (angle < M_PI)
 	{
 		hor_int->y = (int)(data->pos.y / BLOCK_RES) * BLOCK_RES - OFFSET;
-		hor_wall->walldirection = 'N';
+		hor_wall->walldirection = 'S';
 	}
 	else
 	{
 		hor_int->y = (int)(data->pos.y / BLOCK_RES) * BLOCK_RES + BLOCK_RES;
-		hor_wall->walldirection = 'S';
+		hor_wall->walldirection = 'N';
 	}
 	hor_int->x = data->pos.x + ((data->pos.y - hor_int->y) / tan(angle));
 }
@@ -65,12 +65,12 @@ void	find_first_vert(t_data *data, double angle, t_gridpos *vert_int,
 	if (angle > M_PI_2 && angle < 3 * M_PI_2)
 	{
 		vert_int->x = ((int)(data->pos.x / BLOCK_RES) * BLOCK_RES) - OFFSET;
-		vert_wall->walldirection = 'W';
+		vert_wall->walldirection = 'E';
 	}
 	else
 	{
 		vert_int->x = ((int)(data->pos.x / BLOCK_RES) * BLOCK_RES) + BLOCK_RES;
-		vert_wall->walldirection = 'E';
+		vert_wall->walldirection = 'W';
 	}
 	vert_int->y = data->pos.y + ((data->pos.x - vert_int->x) * tan(angle));
 }

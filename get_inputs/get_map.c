@@ -6,11 +6,22 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 18:30:11 by kcouchma          #+#    #+#             */
-/*   Updated: 2024/06/20 11:18:08 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:50:33 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	ft_tablen(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	if (tab)
+		while (tab[i])
+			i++;
+	return (i);
+}
 
 bool	is_not_last(t_data *data)
 {
@@ -35,17 +46,6 @@ bool	is_not_last(t_data *data)
 	return (0);
 }
 
-int	ft_tablen(char **tab)
-{
-	size_t	i;
-
-	i = 0;
-	if (tab)
-		while (tab[i])
-			i++;
-	return (i);
-}
-
 static char	**_ft_realloc(char **tab)
 {
 	size_t		i;
@@ -63,15 +63,13 @@ static char	**_ft_realloc(char **tab)
 		if (i >= INT_MAX)
 		{
 			free(output);
-			if (tab)
-				free(tab);
+			free(tab);
 			return (NULL);
 		}
 	}
 	output[i] = NULL;
 	output[i + 1] = NULL;
-	if (tab)
-		free(tab);
+	free(tab);
 	return (output);
 }
 

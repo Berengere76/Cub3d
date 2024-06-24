@@ -6,7 +6,7 @@
 /*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:52:06 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/20 13:57:36 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:00:38 by kcouchma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	ft_draw_minimap(t_data *data)
 			if (data->map[i][j] == '1')
 				ft_draw_square(data, (j * data->scalew) + 20,
 					(i * data->scaleh) + 20, ft_pixel(0, 0, 0, 255));
+			else if (data->map[i][j] == '0' || is_direc(data->map[i][j]))
+				ft_draw_square(data, (j * data->scalew) + 20,
+					(i * data->scaleh) + 20, ft_pixel(255, 255, 255, 100));
 			j++;
 		}
 		i++;

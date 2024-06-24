@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:52:54 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/20 14:12:28 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:32:46 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	data_init(t_data *data)
 {
+	data->cub_fd = -1;
 	data->walltexture.no_path = NULL;
 	data->walltexture.so_path = NULL;
 	data->walltexture.we_path = NULL;
@@ -50,15 +51,13 @@ void	_resizefunc(int32_t width, int32_t height, t_data *data)
 
 int	open_cub(char *argv, t_data *data)
 {
-	int	fd;
-
 	if (check_cub(argv))
 		return (ft_errorfree("Input",
 				"invalid file extension (need \".cub\")", data));
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
+	data->cub_fd = open(argv, O_RDONLY);
+	if (data->cub_fd == -1)
 		return (ft_errorfree("Input", "failed to open input file", data));
-	return (read_cub(fd, data));
+	return (read_cub(data->cub_fd, data));
 }
 
 int	main(int argc, char **argv)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcouchma <kcouchma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blebas <blebas@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:29:41 by blebas            #+#    #+#             */
-/*   Updated: 2024/06/20 14:44:30 by kcouchma         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:30:36 by blebas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define DEFAULT_WIN_H 480	// window height in pixels
 # define BLOCK_RES 1000		// height/width/depth of walls (in units)
 # define FOV_RAD 1.0472		// 60 degree FOV in radians
-# define MOVESPEED 15.0f	// units moved per key hook cycle
-# define TURNSPEED 0.02f	// radians for view rotation per key hook cycle
+# define MOVESPEED 40.0f	// units moved per key hook cycle
+# define TURNSPEED 0.05f	// radians for view rotation per key hook cycle
 
 /* ***************** */
 /*     STRUCTURES    */
@@ -69,12 +69,13 @@ typedef struct s_drawwall
 typedef struct s_data
 {
 	void			*mlx;
+	int				cub_fd;
 	int				win_width;
 	int				win_height;
 	mlx_image_t		*img;
 	t_walltexture	walltexture;	// NSEW wall texture paths and pointers
-	int				ceiling;		// ceiling colour (RGBA)
-	int				floor;			// floor colour (RGBA)
+	long			ceiling;		// ceiling colour (RGBA)
+	long			floor;			// floor colour (RGBA)
 	char			**map;			// copy of map input
 	int				map_length;		// in number of squares (chars)
 	int				map_height;		// in number of squares (chars)
@@ -124,7 +125,7 @@ void		ft_draw_wall(t_data *data, t_drawwall drawwall, int i);
  * - the ray length from the player to the intercept
  * - the x/y coordinates of the intercept (Returns INFINITY if there is no 
  * intercept or intercept is outside of the map).
- * - the wall orientation (NESW from the player's POV)
+ * - the wall orientation (NESW
  */
 t_drawwall	find_hor_intercept(t_data *data, double angle);
 
@@ -138,7 +139,7 @@ t_drawwall	find_hor_intercept(t_data *data, double angle);
  * - the ray length from the player to the intercept
  * - the x/y coordinates of the intercept (Returns INFINITY if there is no 
  * intercept or intercept is outside of the map).
- * - the wall orientation (NESW from the player's POV)
+ * - the wall orientation (NESW)
  */
 t_drawwall	find_vert_intercept(t_data *data, double angle);
 
@@ -247,6 +248,19 @@ bool		is_off_map(t_data *data, t_gridpos intercept);
  * @return false intercept position is not on a wall edge
  */
 bool		is_wall(t_data *data, t_gridpos intercept);
+
+/**
+ * @brief Calls find_hor_intercept() and find_vert_intercept() to find vertical
+ * and horzontal wall intercepts of the ray, returns the shortest one.
+ * 
+ * @param data input structure
+ * @param ray_angle ray being cast in radians
+ * @return t_drawwall structure containing:
+ * - the ray length from the player to the closest intercept
+ * - the x/y coordinates of the closest intercept.
+ * - the wall orientation (NESW)
+ */
+t_drawwall	ray_len(t_data *data, double ray_angle);
 
 /**
  * @brief Calculates raycasting using the window width (WIN_W) and player field
@@ -487,8 +501,16 @@ char		*ft_strcpy(char *str1, char *str2);
 /******************************************************************************/
 
 /**
+ * @brief Checks for .cub suffix on the input file
+ * 
+ * @param argv input file name
+ * @return int returns 1 via ft_errorfree() if error, otherwise 0
+ */
+int			check_cub(char *argv);
+
+/**
  * @brief Reads input file line by line using gnl(), dispatches to get() 
- * functions to save data to data structure
+ * functions and ft_mapsize() to save data to data structure
  * 
  * @param fd input .cub file
  * @param data input structure
@@ -496,34 +518,13 @@ char		*ft_strcpy(char *str1, char *str2);
  */
 int			read_cub(int fd, t_data *data);
 
-/**
- * @brief Checks for .cub suffix on the input file
- * 
- * @param argv input file name
- * @return int returns 1 via ft_errorfree() if error, otherwise 0
- */
-int			check_cub(char *argv);
-/**
- * @brief Opens the input .cub file, calls:
- * - gnl() to reads the file 
- * - extract_data() to detect input keywords (NO/WE/SO/EA, F/C) and get 
- * functions for colours, textures, and the map (if it is last in the file 
- * using is_not_last())
- * Ensures the map uses a .cub suffix, skips empty lines.
- * 
- * @param argv the second input argument (argv[1]) that should correspond to 
- * the full .cub filename
- * @param data input structure
- * @return int returns 1 via ft_errorfree() if error, otherwise 0
- */
-int			open_cub(char *argv, t_data *data);
-
 /******************************************************************************/
 /* GET_INPUTS/PARSE_MAP.C                                                     */
 /******************************************************************************/
 
 /**
- * @brief Once the map has been copied to data->map, ensures there is only one
+ * @brief Once the map has been copied to data->map, reallocates to replace 
+ * empty part of map with spaces to make it square. Ensures there is only one
  * player start position given (NESW character), and initialises the player 
  * position (data->pos) and view direction in radians (data->view_dir).
  * 
@@ -545,6 +546,17 @@ int			parse_map(t_data *data);
 void		quit_game(t_data *data);
 
 /**
+ * @brief Opens the input .cub file, calls:
+ * - read_cub() to read the file and extract the data
+ * 
+ * @param argv the second input argument (argv[1]) that should correspond to 
+ * the full .cub filename
+ * @param data input structure
+ * @return int returns 1 via ft_errorfree() if error, otherwise 0
+ */
+int			open_cub(char *argv, t_data *data);
+
+/**
  * @brief Checks the number of input arguments (argc == 2), initialises part of
  * the data structure using data_init().
  * Open input file open_cub(), check map using map_is_open() and parse_map(),
@@ -555,7 +567,5 @@ void		quit_game(t_data *data);
  * @return int 1 via ft_error() or ft_errorfree() if error, otherwise 0
  */
 int			main(int argc, char **argv);
-
-t_drawwall	ray_len(t_data *data, double ray_angle);
 
 #endif
